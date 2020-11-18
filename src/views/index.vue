@@ -328,9 +328,9 @@
       </div>
     </div>
     <div class="to-top none" ref="top">
-      <q-img class="cs" src="img/index/cs.png" width="50px"></q-img>
+      <q-img class="cs btn" src="img/index/cs.png" width="50px"></q-img>
       <div class="text text-white text-center">在线客服</div>
-      <q-img class="top" src="img/index/top.png" width="50px" @click="toTop"></q-img>
+      <q-img class="top btn" src="img/index/top.png" width="50px" @click="toTop"></q-img>
     </div>
   </q-layout>
 </template>
@@ -362,6 +362,9 @@ export default {
 
 
 <style lang="scss" scoped>
+.btn{
+  cursor: pointer;
+}
 .none {
   display: none;
 }

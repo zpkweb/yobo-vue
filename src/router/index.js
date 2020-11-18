@@ -24,11 +24,16 @@ const routes = [
   //   name: 'Artists',
   //   component: () => import(/* webpackChunkName: "Artist" */ '../views/artists.vue')
   // },
-  // {
-  //   path: '/mine',
-  //   name: 'Mine',
-  //   component: () => import(/* webpackChunkName: "Mine" */ '../views/mine.vue')
-  // },
+  {
+    path: '/mine',
+    name: 'Mine',
+    component: () => import(/* webpackChunkName: "Mine" */ '../views/mine.vue')
+  },
+  {
+    path: '/wishlist',
+    name: 'wishlist',
+    component: () => import(/* webpackChunkName: "wishlist" */ '../views/wishlist.vue')
+  },
   
 ]
 

@@ -16,6 +16,12 @@
         </div>
       </div>
     </div>
+    <div>
+      <div>您的送货地址在哪里</div>
+      <input type="text" placeholder="名">
+      <input type="text" placeholder="姓氏">
+      <input type="text" placeholder="详细地址">
+    </div>
   </q-layout>
 </template>
 
@@ -30,7 +36,7 @@
       padding: 10px 20px;
     }
     .tags {
-      padding: 0 60px;
+      padding-left: 80px;
       .active {
         background-color: #d6d7c5;
         color: #333;
