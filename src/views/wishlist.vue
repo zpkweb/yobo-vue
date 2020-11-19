@@ -55,10 +55,10 @@
     <div class="history">
       <div>您最近浏览的艺术品</div>
       <div>更多</div>
-      <div class="row item">
-        <div class="col-3 text-center" v-for="i in 4" :key="i">
-          <div class="img">
-            <div class="image"></div>
+      <div>
+        <div class="text-center item" v-for="i in 8" :key="i">
+          <div class="image">
+            <q-img src="img/mine/history1.png" height="200px" contain></q-img>
           </div>
           <div>丙烯酸 • 亚麻</div>
           <div>100x100cm</div>
@@ -159,22 +159,8 @@
 .history {
   width: 1100px;
   margin: 0 auto;
-  .item {
-    .img {
-      width: 200px;
-      height: 200px;
-      background-color: #152c2b;
-      border: 2px solid rgb(173, 175, 139);
-      margin: 0 auto;
-      padding: 8px;
-    }
-    .image {
-      background: url("/img/mine/history1.png") center center no-repeat;
-      width: 180px;
-      height: 180px;
-      background-size: contain;
-      margin: 0 auto;
-    }
+  .image{
+    
   }
 }
 </style>

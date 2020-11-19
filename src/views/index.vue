@@ -321,7 +321,7 @@
 
       <div class="row hot-artist justify-between">
         <div class="col-2" v-for="i in [1, 2, 3, 4, 5]" :key="i">
-          <q-img src="img/index/hotartist1.png" class="image"></q-img>
+          <div class="image"></div>
           <div class="name">JEFF FERST</div>
           <div>墨西哥-画家</div>
         </div>
@@ -330,7 +330,12 @@
     <div class="to-top none" ref="top">
       <q-img class="cs btn" src="img/index/cs.png" width="50px"></q-img>
       <div class="text text-white text-center">在线客服</div>
-      <q-img class="top btn" src="img/index/top.png" width="50px" @click="toTop"></q-img>
+      <q-img
+        class="top btn"
+        src="img/index/top.png"
+        width="50px"
+        @click="toTop"
+      ></q-img>
     </div>
   </q-layout>
 </template>
@@ -353,16 +358,16 @@ export default {
         ? this.$refs.top.classList.remove("none")
         : this.$refs.top.classList.add("none");
     },
-    toTop(){
-      document.documentElement.scrollTop=0
-    }
+    toTop() {
+      document.documentElement.scrollTop = 0;
+    },
   },
 };
 </script>
 
 
 <style lang="scss" scoped>
-.btn{
+.btn {
   cursor: pointer;
 }
 .none {
@@ -373,7 +378,7 @@ export default {
   .content {
     z-index: 10;
     margin: 0 auto;
-    width: 1100px;
+    max-width: 1100px;
     .title {
       font-size: 48px;
       font-family: "Adobe Heiti Std";
@@ -422,7 +427,7 @@ export default {
 
 .advantage {
   padding: 60px 0;
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 
@@ -448,7 +453,7 @@ export default {
   background-color: #ededed;
   .gallary {
     padding: 60px 0;
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
     .gallary-title {
       font-size: 26px;
@@ -495,7 +500,7 @@ export default {
   }
 }
 .new {
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 }
@@ -539,7 +544,7 @@ export default {
   background-color: #ededed;
   .sort {
     padding: 60px 0;
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
 
     .title {
@@ -605,7 +610,7 @@ export default {
   background-color: #232323;
 }
 .contact {
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 60px 0;
   .mail {
@@ -658,7 +663,7 @@ export default {
 }
 .hot-artists {
   padding: 60px 0;
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   .title {
     padding-bottom: 60px;
@@ -676,6 +681,11 @@ export default {
   }
   .image {
     margin-bottom: 30px;
+    background: url("/img/index/hotartist1.png") no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
   }
 }
 .to-top {
@@ -695,7 +705,6 @@ export default {
     vertical-align: top;
   }
 }
-
 </style>
 
 

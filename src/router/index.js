@@ -9,21 +9,21 @@ const routes = [
     name: 'Index',
     component: () => import(/* webpackChunkName: "Index" */ '../views/index.vue')
   },
-  // {
-  //   path: '/artworks',
-  //   name: 'Artworks',
-  //   component: () => import(/* webpackChunkName: "Artworks" */ '../views/artworks.vue')
-  // },
-  // {
-  //   path: '/artist',
-  //   name: 'Artist',
-  //   component: () => import(/* webpackChunkName: "Artist" */ '../views/artist.vue')
-  // },
-  // {
-  //   path: '/artists',
-  //   name: 'Artists',
-  //   component: () => import(/* webpackChunkName: "Artist" */ '../views/artists.vue')
-  // },
+  {
+    path: '/artworks',
+    name: 'Artworks',
+    component: () => import(/* webpackChunkName: "Artworks" */ '../views/artworks.vue')
+  },
+  {
+    path: '/artist',
+    name: 'Artist',
+    component: () => import(/* webpackChunkName: "Artist" */ '../views/artist.vue')
+  },
+  {
+    path: '/artists',
+    name: 'Artists',
+    component: () => import(/* webpackChunkName: "Artist" */ '../views/artists.vue')
+  },
   {
     path: '/mine',
     name: 'Mine',
@@ -33,6 +33,11 @@ const routes = [
     path: '/wishlist',
     name: 'wishlist',
     component: () => import(/* webpackChunkName: "wishlist" */ '../views/wishlist.vue')
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import(/* webpackChunkName: "test" */ '../views/test.vue')
   },
   
 ]

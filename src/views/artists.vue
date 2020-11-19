@@ -11,72 +11,77 @@
       <div class="options">
         <div class="option">
           <div class="text-dark">标签</div>
-          <div>不限</div>
-          <div>画家</div>
-          <div>雕刻家</div>
-          <div>摄影家</div>
+          <div class="btn">不限</div>
+          <div class="btn">画家</div>
+          <div class="btn">雕刻家</div>
+          <div class="btn">摄影家</div>
         </div>
         <div class="option">
           <div class="text-dark">国籍</div>
-          <div>不限</div>
-          <div>中国</div>
-          <div>日本</div>
-          <div>西班牙</div>
-          <div>美国</div>
+          <div class="btn">不限</div>
+          <div class="btn">中国</div>
+          <div class="btn">日本</div>
+          <div class="btn">西班牙</div>
+          <div class="btn">美国</div>
         </div>
         <div class="option">
           <div class="text-dark">姓氏</div>
-          <div v-for="ite in ites" :key="ite">{{ ite }}</div>
+          <div v-for="ite in ites" :key="ite" class="btn">{{ ite }}</div>
         </div>
       </div>
       <q-expansion-item
         dense
-        label="展开选项"
+        :label="text"
         class="text-center title2 relative-position"
+        @show="show"
+        @hide="hide"
       >
         <div class="text-left selected relative-position">
           <div>您已选择：</div>
-          <div class="option">摄影家<span>x</span></div>
-          <div class="option">新闻摄影 <span>x</span></div>
-          <div class="clear absolute-right">清空所有</div>
+          <div class="option">摄影家<span class="btn">×</span></div>
+          <div class="option">新闻摄影 <span class="btn">×</span></div>
+          <div class="clear absolute-right btn">清空所有</div>
         </div>
       </q-expansion-item>
       <div class="sort-by text-right">
-        <div>价格</div>
-        <div>最热</div>
-        <div>最新上传</div>
+        <div class="btn">默认排序</div>
+        <div class="btn">最热</div>
+        <div class="btn">最新上传</div>
       </div>
-      <div class="row artists">
-        <div
-          class="col-3 text-center artist"
-          v-for="i of 12"
-          :key="i"
-        >
-          <div class="content">
-            <q-img
-              src="img/artists/artist.png"
-              width="210px"
-              class="image"
-            ></q-img>
-            <div class="text-left">Alicja Dobrucka</div>
-            <div class="text-left">英国 摄影师</div>
+      <!-- <div class="artists">
+        <div class="artist" v-for="i of 12" :key="i">
+          <div class="image">
+            <q-img src="img/artists/artist.png"></q-img>
           </div>
+          <div class="text-left">Alicja Dobrucka</div>
+          <div class="text-left">英国 摄影师</div>
         </div>
+      </div> -->
+      <div class="text-center none">
+        <q-img
+          src="img/artists/exclamatory.png"
+          width="60px"
+          class="img"
+        ></q-img>
+        <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
       </div>
-      <div class="pagination text-center">
-        <div class="page active text-white">1</div>
-        <div class="page">2</div>
-        <div class="page">3</div>
-        <div>...</div>
-        <div class="page">10</div>
-        <div class="next">下一页</div>
-        <div>共10页</div>
+      <div class="q-pa-lg flex flex-center">
+        <q-pagination
+          v-model="current"
+          color="teal-10"
+          :max="maxPage"
+          :max-pages="4"
+          :boundary-numbers="true"
+        >
+        </q-pagination>
+        <div class="next btn" @click="nextPage">下一页</div>
+        <div class="all">共{{maxPage}}页</div>
         <div>
           到
-          <input type="text" class="input" />
+          <input type="text" class="input" v-model="newPage"/>
           页
         </div>
-        <div class="btn">确定</div>
+        <div class="btn button" @click="toNewPage">确定</div>
       </div>
     </div>
   </q-layout>
@@ -113,12 +118,35 @@ export default {
         "Y",
         "Z",
       ],
+      text: "展开选项",
+      current: 1,
+      newPage:"",
+      maxPage:10
     };
+  },
+  methods: {
+    show() {
+      this.text = "收起选项";
+    },
+    hide() {
+      this.text = "展开选项";
+    },
+    nextPage() {
+      this.current < this.maxPage ? (this.current += 1) : this.current;
+    },
+    toNewPage() {
+      parseInt(this.newPage) > 0 && parseInt(this.newPage) <= this.maxPage
+        ? (this.current = parseInt(this.newPage))
+        : this.current;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  cursor: pointer;
+}
 .banner {
   width: 100%;
   color: #d6d7c5;
@@ -152,7 +180,6 @@ export default {
         margin: 15px;
         &:hover {
           color: green;
-          cursor: default;
         }
       }
     }
@@ -166,17 +193,26 @@ export default {
     }
   }
   .artists {
-    padding: 60px 0 0 0;
+    margin: 60px auto;
+    width: 1100px;
+    column-count: 4;
+    column-gap: 60px;
+    font-size: 16px;
     .artist {
-      margin-bottom: 50px;
-      .content {
-        width: 210px;
-        letter-spacing: 2px;
-      }
-      .image {
-        border: 8px solid #152c2b;
-        margin-bottom: 15px;
-      }
+      margin-bottom: 60px;
+    }
+    .image {
+      margin-bottom: 10px;
+      break-inside: avoid;
+      padding: 8px;
+      background-color: #152c2b;
+    }
+  }
+  .none {
+    padding: 80px 0;
+    font-size: 18px;
+    .img {
+      margin-bottom: 30px;
     }
   }
   .title2::v-deep {
@@ -204,33 +240,42 @@ export default {
       padding-right: 20px;
     }
   }
-  .pagination {
-    margin-bottom: 50px;
-    div {
-      display: inline-block;
-      margin: 5px;
-    }
-    .page {
-      background-color: #f0f0f0;
-      padding: 5px 15px;
-    }
-    .active {
-      background-color: #152c2b;
-    }
-    .next {
-      border: 1px solid #333;
-      padding: 4px 20px;
-    }
-    .input {
-      width: 80px;
-      outline: 0;
-      padding: 3px 0;
-      margin: 0 8px;
-    }
-    .btn {
+
+  .q-pagination::v-deep {
+    .q-btn-item {
+      margin: 6px;
+      border-radius: 0;
+      box-shadow: none;
       background-color: #e0e0e0;
-      padding: 5px 25px;
+      font-size: 12px;
+      padding: 0 10px;
     }
+    .bg-teal-10 {
+      background-color: #152c2b !important;
+    }
+    .q-btn__wrapper:before {
+      box-shadow: none;
+    }
+  }
+  .next {
+    border: 1px solid #333;
+    padding: 4px 20px;
+    margin: 0 6px;
+  }
+  .input {
+    width: 80px;
+    outline: 0;
+    padding: 3px 0;
+    margin: 0 8px;
+  }
+  .button {
+    background-color: #e0e0e0;
+    padding: 5px 25px;
+    margin: 10px;
+  }
+  .all {
+    margin: 0 10px;
   }
 }
 </style>
+
