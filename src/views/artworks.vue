@@ -26,12 +26,13 @@
           <div>高于40000</div>
           <div>自定义</div>
           <div>
-            <input type="text" class="input" />-<input
+            <input type="text" class="input" v-model="lowPrise" />-<input
               type="text"
               class="input"
+              v-model="highPrise"
             />
           </div>
-          <div class="text-dark">确定</div>
+          <div class="text-dark btn" @click="myPrise">确定</div>
         </div>
         <div class="tag">
           <div class="text-dark">颜色</div>
@@ -78,14 +79,14 @@
         <div>最热</div>
         <div>最新上传</div>
       </div>
-      <div class="text-center none">
+      <!-- <div class="text-center none">
         <q-img
           src="img/artists/exclamatory.png"
           width="60px"
           class="img"
         ></q-img>
         <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
-      </div>
+      </div> -->
       <div class="wrap">
         <div class="item">
           <q-img src="/img/artworks/1.png"></q-img>
@@ -197,6 +198,8 @@ export default {
       text: "展开选项",
       maxPage: 10,
       newPage: "",
+      lowPrise: "",
+      highPrise: "",
     };
   },
   methods: {
@@ -224,6 +227,12 @@ export default {
       parseInt(this.newPage) > 0 && parseInt(this.newPage) <= this.maxPage
         ? (this.current = parseInt(this.newPage))
         : this.current;
+    },
+    myPrise() {
+      console.log(typeof this.lowPrise);
+      if (this.lowPrise <= this.highPrise) {
+        this.tags.push(`${this.lowPrise}-${this.highPrise}`);
+      }
     },
   },
 };

@@ -3,8 +3,23 @@
     <q-header class="bg-white">
       <div class="header row text-black">
         <div class="col">
-          <q-img src="img/index/logo.png" class="logo" width="160px"></q-img>
-          <q-btn size="xs" rounded flat class="choose-language btn">CN</q-btn>
+          <q-img
+            src="img/index/logo.png"
+            class="logo btn"
+            width="160px"
+            @click="goIndex"
+          ></q-img>
+          <div class="dropdown1 relative-position">
+            <q-btn size="xs" rounded flat class="choose-language btn">CN</q-btn>
+            <div class="dropdowncontent1 absolute">
+              <div class="items">
+                <div class="after"></div>
+                <div class="item">英语</div>
+                <div class="item">法语</div>
+                <div class="item">日语</div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-grow">
           <div class="artist-register btn" @click="icon3 = true">
@@ -120,7 +135,7 @@
         </div>
       </div>
     </div>
-    <q-dialog v-model="icon1">
+    <q-dialog v-model="icon1" transition-hide="fade" transition-show="fade">
       <q-card class="card">
         <q-card-section class="row items-center q-pb-none">
           <div class="title">登陆</div>
@@ -163,15 +178,26 @@
             <div class="text-right col-6">忘记密码</div>
           </div>
           <div class="text-white text-center login">登陆</div>
-          <input type="checkbox" class="check" />
           <div class="checkbox1">
             登陆即代表同意 <span class="xy btn">《永宝协议》</span>及
             <span class="ys btn">《永宝隐私政策》</span>
           </div>
+          <div class="text-center">
+            <div class="title2">第三方账号登陆</div>
+            <div>
+              <q-img src="img/index/qq-1.png" width="26px" class="img"></q-img>
+              <q-img
+                src="img/index/wechat-1.png"
+                width="26px"
+                class="img"
+              ></q-img>
+              <q-img src="img/index/zfb-1.png" width="26px" class="img"></q-img>
+            </div>
+          </div>
         </q-card-section>
       </q-card>
     </q-dialog>
-    <q-dialog v-model="icon2">
+    <q-dialog v-model="icon2" transition-hide="fade" transition-show="fade">
       <q-card class="card">
         <q-card-section class="row items-center q-pb-none">
           <div class="title">注册</div>
@@ -205,11 +231,23 @@
           <div class="text-white text-center register">注册</div>
           <input type="checkbox" class="check" />
           <div class="checkbox2">保持登陆</div>
+          <div class="text-center">
+            <div class="title2">第三方账号注册</div>
+            <div>
+              <q-img src="img/index/qq-1.png" width="26px" class="img"></q-img>
+              <q-img
+                src="img/index/wechat-1.png"
+                width="26px"
+                class="img"
+              ></q-img>
+              <q-img src="img/index/zfb-1.png" width="26px" class="img"></q-img>
+            </div>
+          </div>
         </q-card-section>
       </q-card>
     </q-dialog>
-    <q-dialog v-model="icon3">
-      <q-card class="card">
+    <q-dialog v-model="icon3" transition-hide="fade" transition-show="fade">
+      <q-card class="card" v-show="this.mode === 'page1'">
         <q-card-section class="row items-center q-pb-none">
           <div class="title">成为艺术家</div>
           <q-space />
@@ -218,32 +256,56 @@
 
         <q-card-section>
           <div>已有4555，6783位艺术家入驻</div>
-          <input type="text" placeholder="姓氏" class="input" />
-          <input type="text" placeholder="名字" class="input" />
-          <input type="text" placeholder="邮箱" class="input" />
-          <input type="text" placeholder="电话" class="input" />
-          <input type="text" placeholder="您是如何发现我们的" class="input" />
-          <select name="c" class="country">
-            <option value="country">国家</option>
+          <input
+            type="text"
+            placeholder="姓氏"
+            class="input"
+            v-model="firstName"
+          />
+          <input type="text" placeholder="名字" class="input" v-model="name" />
+          <input type="text" placeholder="邮箱" class="input" v-model="mail" />
+          <input type="text" placeholder="电话" class="input" v-model="phone" />
+          <select
+            class="select"
+            id="application_country"
+            name="application[country]"
+          >
+            <option value selected>国家</option>
             <option value="American">美国</option>
             <option value="England">英国</option>
             <option value="France">法国</option>
             <option value="Japan">日本</option>
           </select>
-          <select name="l" class="language">
-            <option value="language">语言</option>
-            <option value="American">英语</option>
-            <option value="France">法语</option>
-            <option value="Japanese">日语</option>
+          <select
+            class="select"
+            id="application_language"
+            name="application[language]"
+          >
+            <option value selected>语言</option>
+            <option value="ch">中文</option>
+            <option value="ja">日语</option>
+            <option value="es">西班牙语</option>
+            <option value="fr">法语</option>
+            <option value="en">英语</option>
           </select>
-          <div class="text-white text-center register" @click="icon4 = true">
+          <select
+            class="select"
+            id="application_foundOn"
+            name="application[foundOn]"
+          >
+            <option value selected>您是如何发现我们的</option>
+            <option value="facebook">脸书</option>
+            <option value="google">谷歌</option>
+            <option value="friends">朋友</option>
+            <option value="other">其他</option>
+          </select>
+          <div class="text-white text-center register" @click="goPage2">
             下一步
           </div>
         </q-card-section>
       </q-card>
-    </q-dialog>
-    <q-dialog v-model="icon4">
-      <q-card class="card">
+
+      <q-card class="card" v-show="this.mode === 'page2'">
         <q-card-section class="row items-center q-pb-none">
           <div class="title">成为艺术家</div>
           <q-space />
@@ -253,33 +315,91 @@
         <q-card-section>
           <div class="row">
             <div class="col">已有4555，6783位艺术家入驻</div>
-            <div class="col-grow back" @click="icon3=true">
+            <div class="col-grow back" @click="goPage1">
               <q-img src="img/index/back.png" width="14px"></q-img>
               上一步
             </div>
           </div>
-          <input type="text" placeholder="姓氏" class="input" />
-          <select name="" id=""></select>
-          <input type="text" placeholder="名字" class="input" />
-          <input type="text" placeholder="邮箱" class="input" />
-          <input type="text" placeholder="电话" class="input" />
-          <input type="text" placeholder="您是如何发现我们的" class="input" />
-          <select name="c" class="country">
-            <option value="country">国家</option>
-            <option value="American">美国</option>
-            <option value="England">英国</option>
-            <option value="France">法国</option>
-            <option value="Japan">日本</option>
+          <select
+            class="select"
+            id="application_soleIncome"
+            name="application[soleIncome]"
+          >
+            <option value selected>您是一个专业的全职艺术家么？</option>
+            <option value="1">是</option>
+            <option value="0">否</option>
           </select>
-          <select name="l" class="language">
-            <option value="language">语言</option>
-            <option value="American">英语</option>
-            <option value="France">法语</option>
-            <option value="Japanese">日语</option>
+          <select
+            class="select"
+            id="application_soldOnline"
+            name="application[soldOnline]"
+          >
+            <option value selected>售出的作品中，网上售出的比例占多少？</option>
+            <option value="none">还未售出，所以我才愿意参加永宝</option>
+            <option value="<10%">小于10%</option>
+            <option value="10%-50%">大于10%小于50%</option>
+            <option value=">50%">大于50%</option>
           </select>
-          <div class="text-white text-center register">
-            申请
-          </div>
+          <select
+            class="select"
+            id="application_soldArtworks"
+            name="application[soldArtworks]"
+          >
+            <option value selected>您在过去一年里售出多少件自己的作品？</option>
+            <option value="<10">少于十件</option>
+            <option value="10-30">10-30件</option>
+            <option value="30-50">30-50件</option>
+            <option value="50-100">50-100件</option>
+            <option value=">100">多于100件</option>
+          </select>
+          <select
+            class="select"
+            id="application_soldVia"
+            name="application[soldVia]"
+          >
+            <option value selected>
+              如果您在网上售出过作品，是通过什么渠道呢？
+            </option>
+            <option value="Personal Website">个人网站</option>
+            <option value="Online Gallery">其他线上画廊</option>
+            <option value="Social Media">个人网站</option>
+          </select>
+          <input
+            type="text"
+            class="input"
+            placeholder="如有其他画廊已合作，是哪一家（方便我们更全面了解您）"
+          />
+          <select
+            class="select"
+            id="application_primaryMedium"
+            name="application[primaryMedium]"
+          >
+            <option value selected>主要媒介</option>
+            <option value="painting">油画</option>
+            <option value="photography">摄影作品</option>
+            <option value="drawing">绘画</option>
+            <option value="mixed_media">多种媒体</option>
+            <option value="textile">织品</option>
+            <option value="sculpture">雕刻</option>
+            <option value="installation">安置</option>
+            <option value="video">视频</option>
+            <option value="other">其他</option>
+          </select>
+          <textarea
+            placeholder="您是画廊代表人么？请告知您的画廊名称、城市、国家"
+            class="textarea"
+          ></textarea>
+          <textarea
+            placeholder="最值得一看的展览/画廊/机构名称、城市、国家"
+            class="textarea"
+          ></textarea>
+          <textarea
+            type="text"
+            placeholder="最引人注目的奖项/奖项名称、获得年份"
+            class="textarea"
+          ></textarea>
+          <input type="text" placeholder="连接至网站" class="input" />
+          <div class="text-white text-center register">申请</div>
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -296,14 +416,23 @@ export default {
       icon1: false,
       icon2: false,
       icon3: false,
-      icon4: false,
       msg: "",
+      mode: "page1",
     };
   },
   methods: {
     showMsg() {
       this.msg = "请输入正确用户名";
       this.$refs.msg.classList.add("block");
+    },
+    goIndex() {
+      this.$router.push("/");
+    },
+    goPage2() {
+      this.mode = "page2";
+    },
+    goPage1() {
+      this.mode = "page1";
     },
   },
 };
@@ -327,7 +456,7 @@ export default {
   line-height: 70px;
   height: 70px;
   margin: 0 auto;
-  max-width: 1100px;
+  width: 1100px;
   .logo {
     margin-right: 30px;
   }
@@ -364,7 +493,7 @@ export default {
   padding: 60px 0;
   font-size: 14px;
   .container {
-    max-width: 1100px;
+    width: 1100px;
     margin: 0 auto;
     .title {
       font-size: 18px;
@@ -425,8 +554,9 @@ export default {
   .ys {
     color: #adaf8b;
   }
-  .input {
-    font-size: 14px;
+  .input,
+  .textarea {
+    font-size: 12px;
     display: block;
     padding: 10px;
     width: 340px;
@@ -435,46 +565,108 @@ export default {
     // border: 1px solid rgb(21, 44, 43);
     border: 1px solid rgb(226, 226, 226);
   }
+  .textarea {
+    resize: none;
+    height: 120px;
+  }
   .login,
   .register {
     background-color: #152c2b;
     padding: 10px 20px;
     margin: 20px 0;
   }
+  .select {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 340px;
+    font-size: 12px;
+    border: 1px solid rgb(226, 226, 226);
+    color: #888;
+  }
+  .back {
+    background-color: #d6d7c5;
+  }
+  .check {
+    vertical-align: middle;
+    margin: 0 5px 2px 0;
+  }
+  .checkbox1,
+  .checkbox2 {
+    display: inline-block;
+  }
+  .msg {
+    color: rgb(254, 63, 63);
+    background-color: #ffd7d7;
+    margin: 5px 0 -10px 0;
+    padding: 5px;
+    display: none;
+  }
+  .block {
+    display: block;
+  }
+  .title2 {
+    margin: 20px auto;
+    padding: 20px 0 0 0;
+    border-top: 1px solid rgba(21, 44, 43, 0.1);
+  }
+  .img {
+    margin: 0 16px;
+  }
 }
-.check {
-  vertical-align: middle;
-  margin: 0 5px 2px 0;
-}
-.checkbox1,
-.checkbox2 {
+.dropdown1 {
   display: inline-block;
-}
-.msg {
-  color: rgb(254, 63, 63);
-  background-color: #ffd7d7;
-  margin: 5px 0 -10px 0;
-  padding: 5px;
-  display: none;
-}
-.block {
-  display: block;
-}
-.country,
-.language {
-  display: block;
-  margin: 20px auto;
-  padding: 10px;
-  width: 340px;
-  font-size: 14px;
-}
-.back{
-  background-color: #d6d7c5;
+  .choose-language:hover + .dropdowncontent1 {
+    display: block;
+  }
+  .dropdowncontent1 {
+    display: none;
+    background: transparent;
+    left: -136px;
+    top: 60px;
+    &:hover {
+      display: block;
+    }
+    .items {
+      box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
+      .after {
+        cursor: pointer;
+        position: absolute;
+        display: inline-block;
+        top: -10px;
+        left: 150px;
+        width: 0;
+        height: 0px;
+        content: "";
+        border-style: solid;
+        border-width: 10px;
+        border-color: #fff #fff transparent transparent;
+        transform: rotate(-45deg);
+        box-shadow: 2px -2px 2px rgba(21, 44, 43, 0.1);
+      }
+    }
+    .item {
+      padding: 0 20px;
+      width: 220px;
+      text-align: left;
+      white-space: nowrap;
+      line-height: 40px;
+      background: white;
+      &:hover {
+        background-color: #d6d7c5;
+      }
+    }
+    // .tri {
+    //   box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
+    //   background: transparent;
+    //   width: 0;
+    //   height: 0;
+    //   border-left: 10px solid transparent;
+    //   border-right: 10px solid transparent;
+    //   border-bottom: 10px solid yellow;
+    //   margin-left: 80px;
+    // }
+  }
 }
 </style>
-
-
-
-
-
 

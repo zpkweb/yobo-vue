@@ -1,77 +1,32 @@
 <template>
-  <q-layout>
-    <div id="wrap" class="wrap">
-      <div class="item">
-        <q-img src="/img/test/1.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/2.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/3.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/4.png"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/5.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/6.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/7.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/1.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/2.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/3.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/4.png"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/5.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/6.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/7.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/1.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/2.jpeg"></q-img>
-      </div>
-      <div class="item">
-        <q-img src="/img/test/7.jpeg"></q-img>
-      </div>
-    </div>
-  </q-layout>
+  <div class="a">
+    <div class="t"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.clear{
-    clear: both;
+.a{
+  margin: 0 210px;
+  background-color: transparent;
+  width: 200px;
+  // display: none;
 }
-.wrap{
-    margin: 60px auto;
-    width: 1100px;
-    column-count: 4;
-    column-width: 240px;
-    column-gap: 40px;
+.t{
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid yellow;
+  margin-left: 60px;
 }
 .item{
-    margin-bottom: 40px;
-    break-inside: avoid;
-    border: 2px solid gold;
-    padding: 10px;
-    background-color: green;
+  background-color: aqua;
+  // width: 200px;
+  height: 60px;
 }
 </style>

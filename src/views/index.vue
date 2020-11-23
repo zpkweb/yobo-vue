@@ -7,7 +7,11 @@
             <div class="menu-item">
               <div class="menu-title menu-title1">艺术家</div>
               <q-breadcrumbs class="menu-el" separator="|" gutter="md">
-                <q-breadcrumbs-el label="画家" class="text-white" />
+                <q-breadcrumbs-el
+                  label="画家"
+                  class="text-white btn"
+                  @click="goArtists"
+                />
                 <q-breadcrumbs-el label="雕塑家" class="text-white" />
                 <q-breadcrumbs-el label="国籍" class="text-white" />
                 <q-breadcrumbs-el label="姓氏字母" class="text-white" />
@@ -16,7 +20,11 @@
             <div class="menu-item">
               <div class="menu-title">艺术品</div>
               <q-breadcrumbs class="menu-el" separator="|" gutter="md">
-                <q-breadcrumbs-el label="油画" class="text-white" />
+                <q-breadcrumbs-el
+                  label="油画"
+                  class="text-white btn"
+                  @click="goArtworks"
+                />
                 <q-breadcrumbs-el label="雕塑" class="text-white" />
                 <q-breadcrumbs-el label="版刻" class="text-white" />
                 <q-breadcrumbs-el label="国画" class="text-white" />
@@ -217,15 +225,19 @@
               v-for="i in [1, 2, 3, 4, 5, 6]"
               :key="i"
             >
-              <div class="absolute-full bg">
-                <div class="text absolute-full text-center">
+              <div class="line1 absolute"></div>
+              <div class="line2 absolute"></div>
+              <q-img
+                src="img/index/1.png"
+                width="176px"
+                class="relative-position"
+              >
+                <div class="tab absolute text-center">
                   <div>花草自然</div>
                   <q-img src="img/index/next.png" width="20px"></q-img>
                 </div>
-              </div>
-              <div class="line1 absolute"></div>
-              <div class="line2 absolute"></div>
-              <q-img src="img/index/1.png" width="176px"></q-img>
+                <div class="absolute-full bg"></div>
+              </q-img>
             </div>
           </div>
         </div>
@@ -361,6 +373,12 @@ export default {
     toTop() {
       document.documentElement.scrollTop = 0;
     },
+    goArtists() {
+      this.$router.push("/artists");
+    },
+    goArtworks() {
+      this.$router.push("/artworks");
+    },
   },
 };
 </script>
@@ -378,7 +396,7 @@ export default {
   .content {
     z-index: 10;
     margin: 0 auto;
-    max-width: 1100px;
+    width: 1100px;
     .title {
       font-size: 48px;
       font-family: "Adobe Heiti Std";
@@ -406,6 +424,7 @@ export default {
       }
     }
     .slide {
+      user-select: none;
       font-size: 20.576px;
       font-family: "STFangsong";
       line-height: 1.75;
@@ -427,7 +446,7 @@ export default {
 
 .advantage {
   padding: 60px 0;
-  max-width: 1100px;
+  width: 1100px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 
@@ -453,7 +472,7 @@ export default {
   background-color: #ededed;
   .gallary {
     padding: 60px 0;
-    max-width: 1100px;
+    width: 1100px;
     margin: 0 auto;
     .gallary-title {
       font-size: 26px;
@@ -500,7 +519,7 @@ export default {
   }
 }
 .new {
-  max-width: 1100px;
+  width: 1100px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 }
@@ -544,7 +563,7 @@ export default {
   background-color: #ededed;
   .sort {
     padding: 60px 0;
-    max-width: 1100px;
+    width: 1100px;
     margin: 0 auto;
 
     .title {
@@ -557,22 +576,30 @@ export default {
     }
     .sort-item {
       padding: 0 28px 28px 0;
+      &:hover {
+        .bg {
+          opacity: 0.6;
+        }
+        .tab {
+          opacity: 1;
+          height: 100%;
+        }
+      }
       .bg {
         background-color: rgb(21, 44, 43);
         opacity: 0;
         z-index: 20;
-        width: 176px;
-        height: 150px;
         transition: all 0.5s;
-        .text {
-          color: #fff;
-          font-weight: bolder;
-          padding-top: 60px;
-        }
-        &:hover {
-          opacity: 0.6;
-          height: 150px;
-        }
+        z-index: 20;
+      }
+      .tab {
+        background-color: transparent;
+        width: 100%;
+        height: 0;
+        opacity: 0;
+        transition: all 0.5s;
+        z-index: 60;
+        padding-top: 50px;
       }
 
       .line2 {
@@ -610,7 +637,7 @@ export default {
   background-color: #232323;
 }
 .contact {
-  max-width: 1100px;
+  width: 1100px;
   margin: 0 auto;
   padding: 60px 0;
   .mail {
@@ -663,7 +690,7 @@ export default {
 }
 .hot-artists {
   padding: 60px 0;
-  max-width: 1100px;
+  width: 1100px;
   margin: 0 auto;
   .title {
     padding-bottom: 60px;

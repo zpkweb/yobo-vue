@@ -48,7 +48,7 @@
         <div class="btn">最热</div>
         <div class="btn">最新上传</div>
       </div>
-      <!-- <div class="artists">
+      <div class="artists">
         <div class="artist" v-for="i of 12" :key="i">
           <div class="image">
             <q-img src="img/artists/artist.png"></q-img>
@@ -56,7 +56,7 @@
           <div class="text-left">Alicja Dobrucka</div>
           <div class="text-left">英国 摄影师</div>
         </div>
-      </div> -->
+      </div>
       <div class="text-center none">
         <q-img
           src="img/artists/exclamatory.png"
