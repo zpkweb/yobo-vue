@@ -37,8 +37,28 @@
               @click="icon2 = true"
             />
           </q-breadcrumbs>
-          <div class="search btn"></div>
-          <div class="cart btn"></div>
+          <div class="search btn" @click="icon4 = true"></div>
+          <div class="dropdown3 relative-position">
+            <div class="cart btn"></div>
+            <div class="num absolute btn text-white text-center">2</div>
+            <div class="dropdowncontent3 absolute">
+              <div class="items">
+                <div class="after"></div>
+                <div class="item bg-white row btn">
+                  <div class="image col-grow"></div>
+                  <div class="col">Unelashed Flame</div>
+                </div>
+                <div class="item bg-white row btn">
+                  <div class="image image2 col-grow"></div>
+                  <div class="col">Arbeiten in Lack</div>
+                </div>
+                <div class="pay">
+                  <div class="paybtn text-center text-white btn">结账</div>
+                </div>
+                <!-- <div class="text-center null">您的购物车是空的</div> -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </q-header>
@@ -175,7 +195,9 @@
               <input type="checkbox" class="check" />
               <div class="checkbox2">保持登陆</div>
             </div>
-            <div class="text-right col-6">忘记密码</div>
+            <div class="text-right col-6 btn" @click="getPassword">
+              忘记密码
+            </div>
           </div>
           <div class="text-white text-center login">登陆</div>
           <div class="checkbox1">
@@ -403,6 +425,101 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+    <q-dialog
+      v-model="icon4"
+      transition-hide="fade"
+      transition-show="fade"
+      class="dialog2"
+    >
+      <q-card class="card card2">
+        <q-card-section class="row items-center q-pb-none section1">
+          <div class="title relative-position">
+            <div class="image absolute"></div>
+            <input type="text" placeholder="油画" class="input2" />
+            <div class="btn search2 text-white">搜索</div>
+          </div>
+          <q-space />
+          <q-btn
+            icon="close"
+            flat
+            round
+            dense
+            v-close-popup
+            class="close absolute"
+          />
+        </q-card-section>
+
+        <q-card-section>
+          <div>
+            <div class="tag tag1">热门搜索</div>
+            <div class="tag btn">精选艺术家</div>
+            <div class="tag btn">油画</div>
+            <div class="tag btn">后起之秀</div>
+            <div class="tag btn">雕刻</div>
+            <div class="tag btn">摄影师</div>
+            <div class="tag btn">艺术大家</div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="icon5" transition-hide="fade" transition-show="fade">
+      <q-card class="card get-password">
+        <q-card-section class="row items-center q-pb-none section1">
+          <div class="title">忘记密码</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+        <q-stepper
+          v-model="step"
+          ref="stepper"
+          alternative-labels
+          color="primary"
+          animated
+          class="stepper"
+        >
+          <q-step :name="1" title="输入账户名" :done="step > 1">
+            For each ad campaign that you create, you can control how much
+            you're willing to spend on clicks and conversions, which networks
+            and geographical locations you want your ads to show on, and more.
+          </q-step>
+
+          <q-step :name="2" title="获取验证码" :done="step > 2">
+            An ad group contains one or more ads which target a shared set of
+            keywords.
+          </q-step>
+
+          <q-step :name="3" title="重新设置新密码" :done="step > 3">
+            Try out different ad text to see what brings in the most customers,
+            and learn how to enhance your ads using features like ad extensions.
+            If you run into any problems with your ads, find out how to tell if
+            they're running and how to resolve approval issues.
+          </q-step>
+          <q-step :name="4" title="设置成功">
+            Try out different ad text to see what brings in the most customers,
+            and learn how to enhance your ads using features like ad extensions.
+            If you run into any problems with your ads, find out how to tell if
+            they're running and how to resolve approval issues.
+          </q-step>
+
+          <template v-slot:navigation>
+            <q-stepper-navigation class="text-center">
+              <q-btn
+                @click="$refs.stepper.next()"
+                :label="step === 4 ? '' : step === 3 ? '确认' : '下一步'"
+                class="continue text-white"
+              />
+              <!-- <q-btn
+              v-if="step > 1"
+              flat
+              @click="$refs.stepper.previous()"
+              label="Back"
+              class="q-ml-sm"
+            /> -->
+            </q-stepper-navigation>
+          </template>
+        </q-stepper>
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
@@ -412,10 +529,13 @@ export default {
 
   data() {
     return {
+      step: 1,
       right: false,
       icon1: false,
       icon2: false,
       icon3: false,
+      icon4: false,
+      icon5: false,
       msg: "",
       mode: "page1",
     };
@@ -433,6 +553,10 @@ export default {
     },
     goPage1() {
       this.mode = "page1";
+    },
+    getPassword() {
+      this.icon1 = false;
+      this.icon5 = true;
     },
   },
 };
@@ -616,6 +740,7 @@ export default {
 }
 .dropdown1 {
   display: inline-block;
+  background-color: #fff;
   .choose-language:hover + .dropdowncontent1 {
     display: block;
   }
@@ -651,22 +776,170 @@ export default {
       text-align: left;
       white-space: nowrap;
       line-height: 40px;
-      background: white;
+      background-color: #fff;
+      cursor: pointer;
       &:hover {
         background-color: #d6d7c5;
       }
     }
-    // .tri {
-    //   box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
-    //   background: transparent;
-    //   width: 0;
-    //   height: 0;
-    //   border-left: 10px solid transparent;
-    //   border-right: 10px solid transparent;
-    //   border-bottom: 10px solid yellow;
-    //   margin-left: 80px;
-    // }
+  }
+}
+.dropdown3 {
+  display: inline-block;
+  .cart:hover + .dropdowncontent3 {
+    display: block;
+  }
+  .num {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #152c2b;
+    top: 30px;
+    left: 24px;
+    line-height: 20px;
+    font-weight: bolder;
+    &:hover + .dropdowncontent3 {
+      display: block;
+    }
+  }
+  .dropdowncontent3 {
+    white-space: nowrap;
+    width: 260px;
+    left: -168px;
+    top: 58px;
+    display: none;
+    &:hover {
+      display: block;
+    }
+    .items {
+      box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
+      padding-bottom: 30px;
+      background-color: white;
+      .item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        .image {
+          background: url("/img/index/cart1.png") center center no-repeat;
+          background-size: contain;
+          width: 60px;
+          height: 60px;
+          margin: 20px 10px;
+        }
+        .image2 {
+          background-image: url("/img/index/cart2.png");
+        }
+      }
+      .after {
+        cursor: pointer;
+        position: absolute;
+        display: inline-block;
+        top: -10px;
+        left: 180px;
+        width: 0;
+        height: 0px;
+        content: "";
+        border-style: solid;
+        border-width: 10px;
+        border-color: #fff #fff transparent transparent;
+        transform: rotate(-45deg);
+        box-shadow: 2px -2px 2px rgba(21, 44, 43, 0.1);
+      }
+      .pay {
+        line-height: 40px;
+        .paybtn {
+          background-color: #152c2b;
+          font-weight: bolder;
+          font-size: 18px;
+          margin: 20px 20px 0 20px;
+        }
+      }
+      .null {
+        padding: 30px 0 0 0;
+      }
+    }
+  }
+}
+.card2 {
+  padding: 40px 80px 40px 120px;
+  max-width: none;
+  width: 800px;
+  font-family: "STFangsong";
+  .title {
+    font-size: 18px;
+  }
+  .image {
+    background: url("/img/index/search.png") no-repeat;
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+    bottom: 5px;
+  }
+  .input2 {
+    border: none;
+    border-bottom: 1px solid rgba(21, 44, 43, 0.2);
+    outline: none;
+    display: inline-block;
+    padding-left: 25px;
+    width: 400px;
+  }
+  .search2 {
+    display: inline-block;
+    background-color: #152c2b;
+    padding: 2px 42px;
+    font-weight: bolder;
+  }
+  .close {
+    left: 630px;
+    top: -16px;
+  }
+  .section1 {
+    margin-bottom: 40px;
+  }
+  .tag {
+    font-size: 16px;
+    color: rgb(21, 44, 43);
+    margin: 16px 0;
+  }
+  .tag1 {
+    font-weight: bolder;
+  }
+}
+.get-password {
+  max-width: 800px;
+  width: 800px;
+  .section1 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 20px 40px;
+    padding-bottom: 10px;
+  }
+  .continue {
+    width: 200px;
+    background-color: #152c2b;
+  }
+}
+.get-password::v-deep {
+  .q-stepper__header {
+    border-bottom: none;
+    position: relative;
+  }
+  .q-stepper__tab--active,
+  .q-stepper__tab--done {
+    color: #adaf8b;
+  }
+  .material-icons {
+    display: none;
+  }
+  .q-stepper__dot {
+    width: 24px;
+    height: 24px;
+    min-width: 20px;
+    border-radius: 0;
+    transform: rotate(-45deg);
+  }
+  .q-stepper--horizontal .q-stepper__line:before, .q-stepper--horizontal .q-stepper__line:after{
+    display: none;
   }
 }
 </style>
+
+
 

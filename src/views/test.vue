@@ -1,32 +1,76 @@
 <template>
-  <div class="a">
-    <div class="t"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
-    <div class="item"></div>
+  <div>
+    <q-rating
+      v-model="star"
+      max="1"
+      size="2em"
+      icon="favorite_border"
+      icon-selected="favorite"
+      icon-half="favorite"
+      no-dimming
+    />
+
+    <div>
+      <div class="d1 relative-position">
+        <div class="d2 absolute-bottom row">
+          <div class="image col-6">xxx</div>
+          <div class="col-6 text-right like">
+            <q-rating
+              v-model="star"
+              max="1"
+              size="2em"
+              icon="favorite_border"
+              icon-selected="favorite"
+              icon-half="favorite"
+              no-dimming
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
+
+<script>
+export default {
+  data() {
+    return {
+      star: 1,
+    };
+  },
+};
+</script>
+
 <style lang="scss" scoped>
-.a{
-  margin: 0 210px;
-  background-color: transparent;
-  width: 200px;
-  // display: none;
+.q-rating {
+  color: #adaf8b;
 }
-.t{
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid yellow;
-  margin-left: 60px;
-}
-.item{
+.d1 {
+  width: 300px;
+  height: 300px;
   background-color: aqua;
-  // width: 200px;
-  height: 60px;
+  margin:200px;
+  &:hover .d2 {
+    height: 60px;
+  }
+  &:hover .image {
+    display: block;
+  }
+  &:hover .like {
+    display: block;
+  }
+}
+.d2 {
+  width: 300px;
+  height: 0px;
+  background-color: pink;
+  transition-duration: 1.5s;
+}
+.image,
+.like {
+  display: none;
+  transition-duration: 1.5s;
+  padding: 0 20px;
 }
 </style>

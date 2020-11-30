@@ -232,7 +232,7 @@
                 width="176px"
                 class="relative-position"
               >
-                <div class="tab absolute text-center">
+                <div class="tab absolute-bottom text-center">
                   <div>花草自然</div>
                   <q-img src="img/index/next.png" width="20px"></q-img>
                 </div>

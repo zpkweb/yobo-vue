@@ -75,9 +75,9 @@
         </div>
       </q-expansion-item>
       <div class="sort-by text-right">
-        <div>价格</div>
-        <div>最热</div>
-        <div>最新上传</div>
+        <div class="btn">价格</div>
+        <div class="btn">最热</div>
+        <div class="btn">最新上传</div>
       </div>
       <!-- <div class="text-center none">
         <q-img
@@ -88,62 +88,51 @@
         <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
       </div> -->
       <div class="wrap">
-        <div class="item">
-          <q-img src="/img/artworks/1.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/2.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/3.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/5.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/1.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/2.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/4.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/3.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/1.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/5.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/2.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/3.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/4.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/5.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/1.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/2.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/3.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/4.png"></q-img>
-        </div>
-        <div class="item">
-          <q-img src="/img/artworks/5.png"></q-img>
+        <div class="item relative-position" v-for="i in items" :key="i">
+          <div class="absolute-bottom row content">
+            <div class="artist col-grow">
+              <div class="header"></div>
+              <div class="name text-white">Frida Kahlo</div>
+            </div>
+            <div class="absolute artist2 bg-white">
+              <div class="row">
+                <div class="col-8 row">
+                  <div class="header2 col-grow"></div>
+                  <div class="col desc">
+                    <div>Frida Kahlo</div>
+                    <div>1.66W位关注者</div>
+                  </div>
+                </div>
+                <div class="btn col-4">
+                  <div class="follow btn text-white text-center">关注</div>
+                </div>
+              </div>
+              <div class="artworks row">
+                <div class="col-4">
+                  <div class="artwork"></div>
+                </div>
+                <div class="col-4">
+                  <div class="artwork"></div>
+                </div>
+                <div class="col-4">
+                  <div class="artwork"></div>
+                </div>
+              </div>
+              <div class="after"></div>
+            </div>
+            <div class="col text-right like">
+              <q-rating
+                v-model="i.star"
+                max="1"
+                size="2em"
+                icon="favorite_border"
+                icon-selected="favorite"
+                icon-half="favorite"
+                no-dimming
+              />
+            </div>
+          </div>
+          <q-img :src="i.img"></q-img>
         </div>
       </div>
       <div class="q-pa-lg flex flex-center">
@@ -155,14 +144,14 @@
           :boundary-numbers="true"
         >
         </q-pagination>
-        <div class="next" @click="nextPage">下一页</div>
+        <div class="next btn" @click="nextPage">下一页</div>
         <div class="all">共{{ maxPage }}页</div>
         <div>
           到
           <input type="text" class="input" v-model="newPage" />
           页
         </div>
-        <div class="button" @click="toNewPage">确定</div>
+        <div class="button btn" @click="toNewPage">确定</div>
       </div>
     </div>
   </q-layout>
@@ -172,6 +161,33 @@
 export default {
   data() {
     return {
+      items: [
+        { img: "/img/artworks/2.png", star: 0 },
+        { img: "/img/artworks/4.png", star: 1 },
+        { img: "/img/artworks/1.png", star: 0 },
+        { img: "/img/artworks/1.png", star: 1 },
+        { img: "/img/artworks/5.png", star: 1 },
+        { img: "/img/artworks/3.png", star: 0 },
+        { img: "/img/artworks/2.png", star: 1 },
+        { img: "/img/artworks/3.png", star: 1 },
+        { img: "/img/artworks/1.png", star: 1 },
+        { img: "/img/artworks/4.png", star: 1 },
+        { img: "/img/artworks/1.png", star: 1 },
+        { img: "/img/artworks/3.png", star: 1 },
+        { img: "/img/artworks/2.png", star: 1 },
+        { img: "/img/artworks/3.png", star: 1 },
+        { img: "/img/artworks/1.png", star: 0 },
+        { img: "/img/artworks/4.png", star: 1 },
+        { img: "/img/artworks/4.png", star: 1 },
+        { img: "/img/artworks/5.png", star: 0 },
+        { img: "/img/artworks/1.png", star: 0 },
+        { img: "/img/artworks/3.png", star: 0 },
+        { img: "/img/artworks/3.png", star: 0 },
+        { img: "/img/artworks/4.png", star: 0 },
+        { img: "/img/artworks/1.png", star: 0 },
+        { img: "/img/artworks/2.png", star: 0 },
+      ],
+
       tags: ["新闻摄影", "概念艺术"],
       colors: [
         "pink",
@@ -259,7 +275,7 @@ export default {
   }
 }
 .container {
-  width: 1100px;
+  width: 1000px;
   margin: 0 auto;
   .tags {
     font-size: 16px;
@@ -311,17 +327,106 @@ export default {
     }
   }
   .wrap {
-    margin: 60px auto;
-    width: 1100px;
+    margin: 0 auto;
+    width: 1000px;
     column-count: 4;
-    column-width: 240px;
-    column-gap: 40px;
+    column-gap: 10px;
+    padding: 60px 0;
   }
   .item {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     break-inside: avoid;
-    padding: 10px;
+    padding: 4px;
     background-color: #152c2b;
+    &:hover .content {
+      opacity: 1;
+    }
+    &:hover .artist {
+      opacity: 1;
+    }
+    &:hover .like {
+      opacity: 1;
+    }
+    .content {
+      opacity: 0;
+      z-index: 1000;
+      height: 60px;
+      width: 100%;
+      transition: all 0.5s;
+      background-color: rgba(0, 0, 0, 0.6);
+      line-height: 60px;
+    }
+    .artist,
+    .like {
+      opacity: 0;
+      height: 0;
+      transition: all 0.5s;
+      padding: 0 10px 0px 10px;
+    }
+    .artist:hover +.artist2 {
+      display: block;
+    }
+    .q-rating {
+      color: #adaf8b;
+    }
+    .header {
+      width: 40px;
+      height: 60px;
+      border-radius: 50%;
+      background: url("/img/artworks/i.png") center center no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .name {
+      display: inline-block;
+    }
+    .artist2 {
+      left: -40px;
+      top: -170px;
+      z-index: 100;
+      padding: 15px;
+      width: 340px;
+      box-shadow: 2px -2px 2px rgba(21, 44, 43, 0.1);
+      display: none;
+      .artworks {
+        padding: 10px;
+      }
+      .artwork {
+        background: url("/img/artworks/4.png") center center no-repeat;
+        background-size: contain;
+        height: 80px;
+      }
+      .header2 {
+        width: 40px;
+        height: 40px;
+        background: url("/img/artworks/i.png") center center no-repeat;
+        background-size: contain;
+      }
+      .desc {
+        line-height: 20px;
+        padding-left: 10px;
+      }
+      .follow {
+        font-size: 18px;
+        background-color: #152c2b;
+        line-height: 40px;
+      }
+      .after {
+        cursor: pointer;
+        position: absolute;
+        display: inline-block;
+        top: 159px;
+        left: 60px;
+        width: 0;
+        height: 0px;
+        content: "";
+        border-style: solid;
+        border-width: 10px;
+        border-color: #fff #fff transparent transparent;
+        transform: rotate(135deg);
+        box-shadow: 2px -2px 2px rgba(21, 44, 43, 0.1);
+      }
+    }
   }
   .title2::v-deep {
     .q-focus-helper {
@@ -329,7 +434,7 @@ export default {
     }
     .q-expansion-item__toggle-icon {
       position: absolute;
-      right: 488px;
+      right: 440px;
     }
   }
 
@@ -386,4 +491,3 @@ export default {
   }
 }
 </style>
-
