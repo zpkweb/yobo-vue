@@ -1,5 +1,6 @@
 <template>
-  <q-layout class="app" view="lHh Lpr lFf">
+  <!-- <q-layout class="app" view="lHh Lpr lFf"> -->
+  <q-layout class="app">
     <q-header class="bg-white">
       <div class="header row text-black">
         <div class="col">
@@ -920,6 +921,10 @@ export default {
   .q-stepper__header {
     border-bottom: none;
     position: relative;
+    z-index: 100;
+  }
+  .q-stepper__tab {
+    color: #e4e4e4;
   }
   .q-stepper__tab--active,
   .q-stepper__tab--done {
@@ -935,7 +940,8 @@ export default {
     border-radius: 0;
     transform: rotate(-45deg);
   }
-  .q-stepper--horizontal .q-stepper__line:before, .q-stepper--horizontal .q-stepper__line:after{
+  .q-stepper--horizontal .q-stepper__line:before,
+  .q-stepper--horizontal .q-stepper__line:after{
     display: none;
   }
 }

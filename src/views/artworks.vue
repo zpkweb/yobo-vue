@@ -87,7 +87,7 @@
         ></q-img>
         <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
       </div> -->
-      <div class="wrap">
+      <!-- <div class="wrap">
         <div class="item relative-position" v-for="i in items" :key="i">
           <div class="absolute-bottom row content">
             <div class="artist col-grow">
@@ -134,7 +134,11 @@
           </div>
           <q-img :src="i.img"></q-img>
         </div>
-      </div>
+      </div> -->
+      
+      
+
+
       <div class="q-pa-lg flex flex-center">
         <q-pagination
           v-model="current"
@@ -326,13 +330,13 @@ export default {
       margin-bottom: 30px;
     }
   }
-  .wrap {
-    margin: 0 auto;
-    width: 1000px;
-    column-count: 4;
-    column-gap: 10px;
-    padding: 60px 0;
-  }
+  // .wrap {
+  //   margin: 0 auto;
+  //   width: 1000px;
+  //   column-count: 4;
+  //   column-gap: 10px;
+  //   padding: 60px 0;
+  // }
   .item {
     margin-bottom: 10px;
     break-inside: avoid;
