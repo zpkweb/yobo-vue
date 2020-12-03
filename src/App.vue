@@ -1,7 +1,7 @@
 <template>
   <!-- <q-layout class="app" view="lHh Lpr lFf"> -->
   <q-layout class="app">
-    <q-header class="bg-white">
+    <div class="bg-white nav">
       <div class="header row text-black">
         <div class="col">
           <q-img
@@ -62,100 +62,101 @@
           </div>
         </div>
       </div>
-    </q-header>
-    <q-page-container>
+    </div>
+    <div class="rv">
       <router-view></router-view>
-    </q-page-container>
-    <div class="footer text-white">
-      <div class="container row">
-        <div class="col-9 row">
-          <div class="col-3 item">
-            <div class="title">客户服务</div>
-            <div>联系我们</div>
-            <div>法律声明</div>
-            <div>一般条例</div>
-            <div>客户评价</div>
-            <div>Offer a Gift Card</div>
-            <div>获取我的USD$200抵用券</div>
-            <div>我的账户</div>
-            <div>办公室艺术品</div>
-            <div>设计师艺术品</div>
-            <div>+44 203 445 6333</div>
-          </div>
-          <div class="col-3 item">
-            <div class="title">关于我们</div>
-            <div>关于永宝</div>
-            <div>我们的艺术家</div>
-            <div>杂志</div>
-            <div>团队</div>
-            <div>我们的甄选标准</div>
-            <div>常见问题</div>
-            <div>联系方式</div>
-          </div>
-          <div class="col-3 item">
-            <div class="title">精选艺术家</div>
-            <div>Kirstin Mccoy</div>
-            <div>Josep Moncada</div>
-            <div>Ivan Pili</div>
-            <div>Kristin Kossi</div>
-            <div>Peter Nottrott</div>
-          </div>
-          <div class="col-3 item">
-            <div class="title">关注永宝</div>
-            <div>微信</div>
-            <div>微博</div>
-            <div>Facebook</div>
-            <div>Instagram</div>
-            <div>Pinterest</div>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <div class="title book">订阅永宝电子资讯</div>
-          <div class="privacy-policy">
-            通过订阅，即代表您接受永宝的<span class="btn">隐私政策条款</span>
-          </div>
-          <div class="row mail">
-            <div class="col">电子邮件地址</div>
-            <div class="col-grow">
-              <q-img
-                src="img/index/nextpage.png"
-                width="5px"
-                class="getmail"
-              ></q-img>
+      <div class="footer text-white">
+        <div class="container row">
+          <div class="col-9 row">
+            <div class="col-3 item">
+              <div class="title">客户服务</div>
+              <div>联系我们</div>
+              <div>法律声明</div>
+              <div>一般条例</div>
+              <div>客户评价</div>
+              <div>Offer a Gift Card</div>
+              <div>获取我的USD$200抵用券</div>
+              <div>我的账户</div>
+              <div>办公室艺术品</div>
+              <div>设计师艺术品</div>
+              <div>+44 203 445 6333</div>
+            </div>
+            <div class="col-3 item">
+              <div class="title">关于我们</div>
+              <div>关于永宝</div>
+              <div>我们的艺术家</div>
+              <div>杂志</div>
+              <div>团队</div>
+              <div>我们的甄选标准</div>
+              <div>常见问题</div>
+              <div>联系方式</div>
+            </div>
+            <div class="col-3 item">
+              <div class="title">精选艺术家</div>
+              <div>Kirstin Mccoy</div>
+              <div>Josep Moncada</div>
+              <div>Ivan Pili</div>
+              <div>Kristin Kossi</div>
+              <div>Peter Nottrott</div>
+            </div>
+            <div class="col-3 item">
+              <div class="title">关注永宝</div>
+              <div>微信</div>
+              <div>微博</div>
+              <div>Facebook</div>
+              <div>Instagram</div>
+              <div>Pinterest</div>
             </div>
           </div>
 
-          <div class="title pay">支持的支付方式</div>
-          <div class="row pay1">
-            <div class="col-3">
-              <q-img src="img/index/zfb.png" width="60px"></q-img>
+          <div class="col-3">
+            <div class="title book">订阅永宝电子资讯</div>
+            <div class="privacy-policy">
+              通过订阅，即代表您接受永宝的<span class="btn">隐私政策条款</span>
             </div>
-            <div class="col-3">
-              <q-img src="img/index/visa.png" width="60px"></q-img>
+            <div class="row mail">
+              <div class="col">电子邮件地址</div>
+              <div class="col-grow">
+                <q-img
+                  src="img/index/nextpage.png"
+                  width="5px"
+                  class="getmail"
+                ></q-img>
+              </div>
             </div>
-            <div class="col-3">
-              <q-img src="img/index/paypal.png" width="60px"></q-img>
+
+            <div class="title pay">支持的支付方式</div>
+            <div class="row pay1">
+              <div class="col-3">
+                <q-img src="img/index/zfb.png" width="60px"></q-img>
+              </div>
+              <div class="col-3">
+                <q-img src="img/index/visa.png" width="60px"></q-img>
+              </div>
+              <div class="col-3">
+                <q-img src="img/index/paypal.png" width="60px"></q-img>
+              </div>
             </div>
+            <q-img src="img/index/mastercard.png" width="140px" contain></q-img>
           </div>
-          <q-img src="img/index/mastercard.png" width="140px" contain></q-img>
-        </div>
-        <div class="col-12 row bottom">
-          <div class="col-4">©2020 永宝（中国）有限公司 保留所有权利</div>
-          <div class="col-3">沪ICP备15013228号-17</div>
-          <div class="col-3 row">
-            <div class="col-grow image">
-              <q-img
-                src="img/index/police.png"
-                width="12px"
-                class="img"
-              ></q-img>
+          <div class="col-12 row bottom">
+            <div class="col-4">©2020 永宝（中国）有限公司 保留所有权利</div>
+            <div class="col-3">沪ICP备15013228号-17</div>
+            <div class="col-3 row">
+              <div class="col-grow image">
+                <q-img
+                  src="img/index/police.png"
+                  width="12px"
+                  class="img"
+                ></q-img>
+              </div>
+              <div class="col">沪公网安备 31010402004774号</div>
             </div>
-            <div class="col">沪公网安备 31010402004774号</div>
           </div>
         </div>
       </div>
     </div>
+
     <q-dialog v-model="icon1" transition-hide="fade" transition-show="fade">
       <q-card class="card">
         <q-card-section class="row items-center q-pb-none">
@@ -574,8 +575,23 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.rv {
+  flex-grow: 1;
+  overflow: auto;
+}
 .btn {
   cursor: pointer;
+}
+.nav {
+  flex-grow: 0;
+  position: relative;
+  line-height: 70px;
+  background-color: rgb(68, 68, 173);
 }
 .header {
   line-height: 70px;
@@ -750,6 +766,7 @@ export default {
     background: transparent;
     left: -136px;
     top: 60px;
+    z-index: 1000;
     &:hover {
       display: block;
     }
@@ -787,7 +804,7 @@ export default {
 }
 .dropdown3 {
   display: inline-block;
-  .cart:hover + .dropdowncontent3 {
+  .cart:hover :nth-child(2){
     display: block;
   }
   .num {
@@ -804,6 +821,7 @@ export default {
     }
   }
   .dropdowncontent3 {
+    z-index: 1000;
     white-space: nowrap;
     width: 260px;
     left: -168px;
@@ -941,7 +959,7 @@ export default {
     transform: rotate(-45deg);
   }
   .q-stepper--horizontal .q-stepper__line:before,
-  .q-stepper--horizontal .q-stepper__line:after{
+  .q-stepper--horizontal .q-stepper__line:after {
     display: none;
   }
 }

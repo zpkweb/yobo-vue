@@ -31,15 +31,24 @@ const routes = [
   },
   {
     path: '/wishlist',
-    name: 'wishlist',
+    name: 'Wishlist',
     component: () => import(/* webpackChunkName: "wishlist" */ '../views/wishlist.vue')
   },
   {
     path: '/test',
-    name: 'test',
+    name: 'Test',
     component: () => import(/* webpackChunkName: "test" */ '../views/test.vue')
   },
-  
+  {
+    path: '/like',
+    name: 'Like',
+    component: () => import(/* webpackChunkName: "like" */ '../views/like.vue')
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: () => import(/* webpackChunkName: "order" */ '../views/order.vue')
+  },
 ]
 
 const router = new VueRouter({

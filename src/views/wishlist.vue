@@ -5,10 +5,10 @@
       <div class="absolute-full">
         <div class="container">
           <div class="tags">
-            <div>我的账户</div>
-            <div class="active">我的最爱</div>
-            <div>我最喜爱的艺术家</div>
-            <div>购买记录</div>
+            <div class="btn" @click="goMine">我的账户</div>
+            <div class="active btn" @click="goWishlist">我的最爱</div>
+            <div class="btn" @click="goLike">我最喜爱的艺术家</div>
+            <div class="btn" @click="goOrder">购买记录</div>
           </div>
           <div class="line"></div>
           <div class="title">下午好 葫芦娃</div>
@@ -52,21 +52,42 @@
         </div>
       </div>
     </div>
-    <div class="history">
-      <div>您最近浏览的艺术品</div>
-      <div>更多</div>
-      <div>
-        <div class="text-center item" v-for="i in 8" :key="i">
-          <div class="image">
-            <q-img src="img/mine/history1.png" height="200px" contain></q-img>
+    <div class="history-container">
+      <div class="history relative-position">
+        <div class="text-center title">您最近浏览的艺术品</div>
+        <div class="text-right more absolute">更多</div>
+        <div class="row">
+          <div class="item text-center col-3" v-for="i in 4" :key="i">
+            <div class="image">
+              <q-img src="img/mine/history1.png" height="200px" contain></q-img>
+            </div>
+            <div class="text-left">丙烯酸 • 亚麻</div>
+            <div class="text-left">100x100cm</div>
           </div>
-          <div>丙烯酸 • 亚麻</div>
-          <div>100x100cm</div>
         </div>
       </div>
     </div>
   </q-layout>
 </template>
+
+<script>
+export default {
+  methods: {
+    goWishlist() {
+      this.$router.push("/wishlist");
+    },
+    goMine() {
+      this.$router.push("/mine");
+    },
+    goLike(){
+      this.$router.push("/like")
+    },
+    goOrder(){
+      this.$router.push("order")
+    }
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .btn {
@@ -92,11 +113,11 @@
       width: 800px;
       height: 1px;
       background-color: rgba(214, 215, 197, 0.1);
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     .title,
     .time {
-      padding: 0 100px;
+      padding: 0 95px;
     }
     .title {
       font-size: 32px;
@@ -123,14 +144,14 @@
   margin: 0 auto;
   padding: 0 100px;
   .item {
-    border-top: 1px solid pink;
+    border-top: 1px solid rgba(21, 44, 43, 0.1);
     padding: 20px 0;
     .image {
-      background: url("/img/mine/artwork.png") left center no-repeat;
+      background: url("/img/mine/artwork.png") center center no-repeat;
       background-size: contain;
     }
     .image2 {
-      background: url("/img/mine/artwork2.png") left center no-repeat;
+      background: url("/img/mine/artwork2.png") center center no-repeat;
       background-size: contain;
     }
     .buy {
@@ -156,12 +177,29 @@
     }
   }
 }
+.history-container{
+  background-color: #152c2b;
+}
 .history {
+  padding:60px 0;
   width: 1100px;
   margin: 0 auto;
-  .image{
-    
+  color: rgb(173, 175, 139);
+  .title{
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  .more{
+    left: 1030px;
+    top: 70px;
+  }
+  .image {
+    width: 212px;
+    padding:6px;
+    border: 1.5px solid rgb(173, 175, 139);
+    margin-bottom: 10px;
   }
 }
 </style>
+
 

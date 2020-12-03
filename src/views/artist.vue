@@ -45,27 +45,21 @@
       </div>
     </div>
     <div class="artworks-container">
-      <!-- <div class="artworks">
+      <div class="artworks">
         <div v-for="tag in tags" :key="tag">
           <div class="row title">
             <div class="tag col-6">{{ tag }}</div>
             <div class="more col-6 text-right">更多</div>
           </div>
           <div class="artwork row">
-            <div class="col-3 text-center" v-for="i in imgs" :key="i">
-              <div class="image" :style="{background:`url(${i.img}) center center no-repeat`}"></div>
-              <q-img
-                :src="i.img"
-                height="180px"
-                width="100%"
-                class="image"
-              ></q-img>
+            <div class="col-3 text-center" v-for="i of 4" :key="i">
+              <!-- <div class="image"></div> -->
+              <div class="image">
+                <q-img src="img/artist/artwork.png" width="180px"></q-img>
+              </div>
             </div>
           </div>
         </div>
-      </div> -->
-      <div class="artworks">
-        
       </div>
     </div>
     <div class="sold">
@@ -114,30 +108,6 @@ export default {
   data() {
     return {
       tags: ["杂志封面", "原始结构的波帕特肖像画", "波帕特肖像画"],
-      imgs: [
-        "1.png",
-        "2.png",
-        "1.png",
-        "3.png",
-        "2.png",
-        "2.png",
-        "1.png",
-        "1.png",
-      ],
-      imgs: [
-        { img: "/img/artist/1.png" },
-        { img: "/img/artist/2.png" },
-        { img: "/img/artist/3.png" },
-        { img: "/img/artist/1.png" },
-        { img: "/img/artist/1.png" },
-        { img: "/img/artist/2.png" },
-        { img: "/img/artist/2.png" },
-        { img: "/img/artist/3.png" },
-        { img: "/img/artist/1.png" },
-        { img: "/img/artist/2.png" },
-        { img: "/img/artist/1.png" },
-        { img: "/img/artist/1.png" },
-      ],
     };
   },
 };
@@ -218,28 +188,26 @@ export default {
   color: rgb(173, 175, 139);
   font-size: 24px;
   padding: 0 0 60px 0;
-  // .artworks {
-  //   width: 1100px;
-  //   margin: 0 auto;
-  //   .title {
-  //     padding: 30px 40px;
-  //     .tag {
-  //       display: inline-block;
-  //     }
-  //     .more {
-  //       font-size: 16px;
-  //       display: inline-block;
-  //       margin-top: 10px;
-  //     }
-  //   }
-  //   .image {
-  //     height: 280px;
-  //     background-size: contain;
-  //   }
-  // }
-  .artworks{
-    height: 330px;
-    
+  .artworks {
+    width: 1100px;
+    margin: 0 auto;
+    .title {
+      padding: 30px 40px;
+      .tag {
+        display: inline-block;
+      }
+      .more {
+        font-size: 16px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+    .image {
+      width: 194px;
+      background-color: #152c2b;
+      padding: 6px;
+      border: 1px solid #3f3f38;
+    }
   }
 }
 .sold {
