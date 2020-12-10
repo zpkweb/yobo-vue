@@ -1,23 +1,26 @@
 <template>
   <!-- <q-layout class="app" view="lHh Lpr lFf"> -->
   <q-layout class="app">
-    <div class="bg-white nav">
-      <div class="header row text-black">
+    <div class="bg-white nav relative-position">
+      <div class="header row text-black relative-position">
         <div class="col">
           <q-img
             src="img/index/logo.png"
             class="logo btn"
-            width="160px"
+            width="170px"
             @click="goIndex"
           ></q-img>
-          <div class="dropdown1 relative-position">
+          <div class="choose-language-container">
             <q-btn size="xs" rounded flat class="choose-language btn">CN</q-btn>
+          </div>
+
+          <div class="dropdown1">
             <div class="dropdowncontent1 absolute">
               <div class="items">
                 <div class="after"></div>
                 <div class="item">英语</div>
-                <div class="item">法语</div>
                 <div class="item">日语</div>
+                <div class="item">西班牙语</div>
               </div>
             </div>
           </div>
@@ -38,20 +41,31 @@
               @click="icon2 = true"
             />
           </q-breadcrumbs>
-          <div class="search btn" @click="icon4 = true"></div>
-          <div class="dropdown3 relative-position">
-            <div class="cart btn"></div>
+          <!-- <div class="username">葫芦娃</div> -->
+          <div class="search btn text-center" @click="icon4 = true">
+            <q-img
+              src="img/index/search.png"
+              class="image"
+              width="21px"
+            ></q-img>
+          </div>
+
+          <div class="cart btn text-center">
+            <q-img src="img/index/cart.png" class="image" width="17px"></q-img>
             <div class="num absolute btn text-white text-center">2</div>
+          </div>
+
+          <div class="dropdown3">
             <div class="dropdowncontent3 absolute">
               <div class="items">
                 <div class="after"></div>
-                <div class="item bg-white row btn">
+                <div class="item row btn">
                   <div class="image col-grow"></div>
-                  <div class="col">Unelashed Flame</div>
+                  <div class="col desc">Unelashed Flame</div>
                 </div>
-                <div class="item bg-white row btn">
+                <div class="item row btn">
                   <div class="image image2 col-grow"></div>
-                  <div class="col">Arbeiten in Lack</div>
+                  <div class="col desc">Arbeiten in Lack</div>
                 </div>
                 <div class="pay">
                   <div class="paybtn text-center text-white btn">结账</div>
@@ -65,7 +79,7 @@
     </div>
     <div class="rv">
       <router-view></router-view>
-      <div class="footer text-white">
+      <div class="footer text-white" v-if="this.$route.name != 'Artworks'">
         <div class="container row">
           <div class="col-9 row">
             <div class="col-3 item">
@@ -185,13 +199,15 @@
             placeholder="您的全名"
             class="input"
             @input="showMsg"
+            v-model="name"
           />
           <input
             type="text"
             placeholder="请输入邮箱或注册手机号"
             class="input"
+            v-model="email"
           />
-          <input type="text" placeholder="请输入密码" class="input" />
+          <input type="text" placeholder="请输入密码" class="input" v-model="password"/>
           <div class="row">
             <div class="text-left col-6">
               <input type="checkbox" class="check" />
@@ -201,7 +217,7 @@
               忘记密码
             </div>
           </div>
-          <div class="text-white text-center login">登陆</div>
+          <div class="text-white text-center login btn" @click="login">登陆</div>
           <div class="checkbox1">
             登陆即代表同意 <span class="xy btn">《永宝协议》</span>及
             <span class="ys btn">《永宝隐私政策》</span>
@@ -240,19 +256,32 @@
               >登陆</span
             >
           </div>
-          <input type="text" placeholder="您的全名" class="input" />
+          <input
+            type="text"
+            placeholder="您的全名"
+            class="input"
+            v-model="name"
+          />
           <input
             type="text"
             placeholder="请输入邮箱或注册手机号"
             class="input"
+            v-model="email"
           />
-          <input type="text" placeholder="请输入密码" class="input" />
+          <input
+            type="text"
+            placeholder="请输入密码"
+            class="input"
+            v-model="password"
+          />
           <input type="checkbox" class="check" />
           <div class="checkbox1">
             我已阅读并同意 <span class="xy btn">《永宝协议》</span>及
             <span class="ys btn">《永宝隐私政策》</span>
           </div>
-          <div class="text-white text-center register">注册</div>
+          <div class="text-white text-center register btn" @click="register">
+            注册
+          </div>
           <input type="checkbox" class="check" />
           <div class="checkbox2">保持登陆</div>
           <div class="text-center">
@@ -286,9 +315,9 @@
             class="input"
             v-model="firstName"
           />
-          <input type="text" placeholder="名字" class="input" v-model="name" />
-          <input type="text" placeholder="邮箱" class="input" v-model="mail" />
-          <input type="text" placeholder="电话" class="input" v-model="phone" />
+          <input type="text" placeholder="名字" class="input" v-model="artistName" />
+          <input type="text" placeholder="邮箱" class="input" v-model="artistMail" />
+          <input type="text" placeholder="电话" class="input" v-model="artistPhone" />
           <select
             class="select"
             id="application_country"
@@ -526,6 +555,7 @@
 </template>
 
 <script>
+import * as ApiUser from "@/api/user.js";
 export default {
   components: {},
 
@@ -540,12 +570,20 @@ export default {
       icon5: false,
       msg: "",
       mode: "page1",
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      firstName:"",
+      artistName:"",
+      artistMail:"",
+      artistPhone:""
     };
   },
   methods: {
     showMsg() {
-      this.msg = "请输入正确用户名";
-      this.$refs.msg.classList.add("block");
+      // this.msg = "请输入正确用户名";
+      // this.$refs.msg.classList.add("block");
     },
     goIndex() {
       this.$router.push("/");
@@ -560,6 +598,19 @@ export default {
       this.icon1 = false;
       this.icon5 = true;
     },
+    async register() {
+      let res = await ApiUser.register(
+        this.name,
+        this.email,
+        this.phone,
+        this.password
+      );
+      console.log(res);
+    },
+    async login(){
+      let res= await ApiUser.login(this.email,this.phone,this.password)
+      console.log(res)  
+    }
   },
 };
 </script>
@@ -575,6 +626,9 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+.btn{
+  cursor: pointer;
+}
 .app {
   display: flex;
   flex-direction: column;
@@ -583,6 +637,7 @@ export default {
 .rv {
   flex-grow: 1;
   overflow: auto;
+  min-width: 1220px;
 }
 .btn {
   cursor: pointer;
@@ -597,35 +652,51 @@ export default {
   line-height: 70px;
   height: 70px;
   margin: 0 auto;
-  width: 1100px;
+  width: 1220px;
+  padding: 0 20px;
+  .username {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 12px 0 15px;
+  }
   .logo {
     margin-right: 30px;
   }
   .choose-language {
     background-color: #d6d7c5;
+    padding: 0;
+  }
+  .choose-language::v-deep {
+    .q-btn__wrapper {
+      width: 52px;
+    }
+    .q-btn__content {
+      font-size: 16px;
+      padding: 2px 0;
+    }
   }
   .login,
   .register,
   .separator,
   .artist-register {
-    font-size: 14px;
+    font-size: 18px;
   }
   .separator,
-  .artist-register,
-  .search,
-  .cart {
+  .artist-register {
     display: inline-block;
     margin-left: 14px;
   }
+  .separator {
+    padding-right: 10px;
+  }
   .search,
   .cart {
-    background: url("/img/index/search.png") no-repeat;
-    width: 21px;
-    height: 21px;
-    vertical-align: middle;
-  }
-  .cart {
-    background: url("/img/index/cart.png") no-repeat;
+    display: inline-block;
+    width: 38px;
+    height: 70px;
+    .image {
+      margin-bottom: 4px;
+    }
   }
 }
 .footer {
@@ -634,7 +705,7 @@ export default {
   padding: 60px 0;
   font-size: 14px;
   .container {
-    width: 1100px;
+    width: 1220px;
     margin: 0 auto;
     .title {
       font-size: 18px;
@@ -755,21 +826,25 @@ export default {
     margin: 0 16px;
   }
 }
+.choose-language-container {
+  display: inline-block;
+}
+.choose-language-container:hover + .dropdown1 {
+  display: block;
+}
 .dropdown1 {
   display: inline-block;
   background-color: #fff;
-  .choose-language:hover + .dropdowncontent1 {
+  display: none;
+  &:hover {
     display: block;
   }
   .dropdowncontent1 {
-    display: none;
     background: transparent;
-    left: -136px;
-    top: 60px;
+    left: 93px;
+    top: 67px;
     z-index: 1000;
-    &:hover {
-      display: block;
-    }
+
     .items {
       box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
       .after {
@@ -777,7 +852,7 @@ export default {
         position: absolute;
         display: inline-block;
         top: -10px;
-        left: 150px;
+        left: 142px;
         width: 0;
         height: 0px;
         content: "";
@@ -790,10 +865,10 @@ export default {
     }
     .item {
       padding: 0 20px;
-      width: 220px;
+      width: 190px;
       text-align: left;
       white-space: nowrap;
-      line-height: 40px;
+      line-height: 48px;
       background-color: #fff;
       cursor: pointer;
       &:hover {
@@ -802,57 +877,62 @@ export default {
     }
   }
 }
+.cart:hover + .dropdown3 {
+  display: block;
+}
+.num {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #152c2b;
+  top: 32px;
+  left: 1182px;
+  line-height: 17px;
+  font-weight: bolder;
+  font-size: 12px;
+}
 .dropdown3 {
-  display: inline-block;
-  .cart:hover :nth-child(2){
+  display: none;
+  &:hover {
     display: block;
-  }
-  .num {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background-color: #152c2b;
-    top: 30px;
-    left: 24px;
-    line-height: 20px;
-    font-weight: bolder;
-    &:hover + .dropdowncontent3 {
-      display: block;
-    }
   }
   .dropdowncontent3 {
     z-index: 1000;
     white-space: nowrap;
-    width: 260px;
-    left: -168px;
-    top: 58px;
-    display: none;
-    &:hover {
-      display: block;
-    }
+    width: 280px;
+    left: 938px;
+    top: 62px;
+    background-color: #fff;
+    box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
     .items {
-      box-shadow: 0px 3px 7px 0px rgba(21, 44, 43, 0.4);
-      padding-bottom: 30px;
+      padding-bottom: 10px;
       background-color: white;
       .item {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        &:hover {
+          background-color: #d6d7c5;
+        }
         .image {
           background: url("/img/index/cart1.png") center center no-repeat;
           background-size: contain;
-          width: 60px;
-          height: 60px;
-          margin: 20px 10px;
+          width: 40px;
+          height: 40px;
+          margin: 25px 30px;
         }
         .image2 {
           background-image: url("/img/index/cart2.png");
         }
+      }
+      .desc {
+        line-height: 80px;
       }
       .after {
         cursor: pointer;
         position: absolute;
         display: inline-block;
         top: -10px;
-        left: 180px;
+        left: 232px;
         width: 0;
         height: 0px;
         content: "";
@@ -864,11 +944,13 @@ export default {
       }
       .pay {
         line-height: 40px;
+        width: 240px;
+        margin: 0 auto;
         .paybtn {
           background-color: #152c2b;
           font-weight: bolder;
           font-size: 18px;
-          margin: 20px 20px 0 20px;
+          margin: 35px 20px 0 20px;
         }
       }
       .null {
@@ -964,6 +1046,7 @@ export default {
   }
 }
 </style>
+
 
 
 

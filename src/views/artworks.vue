@@ -87,7 +87,7 @@
         ></q-img>
         <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
       </div> -->
-      <div class="wrap">
+      <!-- <div class="wrap">
         <div class="item relative-position" v-for="i in items" :key="i">
           <div class="absolute-bottom row content">
             <div class="artist col-grow">
@@ -134,12 +134,16 @@
           </div>
           <q-img :src="i.img"></q-img>
         </div>
+      </div> -->
+      <div class="artworks">
+        <vue-waterfall-easy
+          :imgsArr="imgsArr"
+          @scrollReachBottom="getData"
+          maxCols="4"
+        ></vue-waterfall-easy>
       </div>
-      
-      
 
-
-      <div class="q-pa-lg flex flex-center">
+      <!-- <div class="q-pa-lg flex flex-center">
         <q-pagination
           v-model="current"
           color="teal-10"
@@ -156,40 +160,75 @@
           页
         </div>
         <div class="button btn" @click="toNewPage">确定</div>
-      </div>
+      </div> -->
     </div>
   </q-layout>
 </template>
 
 <script>
+import vueWaterfallEasy from "vue-waterfall-easy";
 export default {
+  name: "app",
   data() {
     return {
-      items: [
-        { img: "/img/artworks/2.png", star: 0 },
-        { img: "/img/artworks/4.png", star: 1 },
-        { img: "/img/artworks/1.png", star: 0 },
-        { img: "/img/artworks/1.png", star: 1 },
-        { img: "/img/artworks/5.png", star: 1 },
-        { img: "/img/artworks/3.png", star: 0 },
-        { img: "/img/artworks/2.png", star: 1 },
-        { img: "/img/artworks/3.png", star: 1 },
-        { img: "/img/artworks/1.png", star: 1 },
-        { img: "/img/artworks/4.png", star: 1 },
-        { img: "/img/artworks/1.png", star: 1 },
-        { img: "/img/artworks/3.png", star: 1 },
-        { img: "/img/artworks/2.png", star: 1 },
-        { img: "/img/artworks/3.png", star: 1 },
-        { img: "/img/artworks/1.png", star: 0 },
-        { img: "/img/artworks/4.png", star: 1 },
-        { img: "/img/artworks/4.png", star: 1 },
-        { img: "/img/artworks/5.png", star: 0 },
-        { img: "/img/artworks/1.png", star: 0 },
-        { img: "/img/artworks/3.png", star: 0 },
-        { img: "/img/artworks/3.png", star: 0 },
-        { img: "/img/artworks/4.png", star: 0 },
-        { img: "/img/artworks/1.png", star: 0 },
-        { img: "/img/artworks/2.png", star: 0 },
+      // items: [
+      //   { img: "/img/artworks/2.png", star: 0 },
+      //   { img: "/img/artworks/4.png", star: 1 },
+      //   { img: "/img/artworks/1.png", star: 0 },
+      //   { img: "/img/artworks/1.png", star: 1 },
+      //   { img: "/img/artworks/5.png", star: 1 },
+      //   { img: "/img/artworks/3.png", star: 0 },
+      //   { img: "/img/artworks/2.png", star: 1 },
+      //   { img: "/img/artworks/3.png", star: 1 },
+      //   { img: "/img/artworks/1.png", star: 1 },
+      //   { img: "/img/artworks/4.png", star: 1 },
+      //   { img: "/img/artworks/1.png", star: 1 },
+      //   { img: "/img/artworks/3.png", star: 1 },
+      //   { img: "/img/artworks/2.png", star: 1 },
+      //   { img: "/img/artworks/3.png", star: 1 },
+      //   { img: "/img/artworks/1.png", star: 0 },
+      //   { img: "/img/artworks/4.png", star: 1 },
+      //   { img: "/img/artworks/4.png", star: 1 },
+      //   { img: "/img/artworks/5.png", star: 0 },
+      //   { img: "/img/artworks/1.png", star: 0 },
+      //   { img: "/img/artworks/3.png", star: 0 },
+      //   { img: "/img/artworks/3.png", star: 0 },
+      //   { img: "/img/artworks/4.png", star: 0 },
+      //   { img: "/img/artworks/1.png", star: 0 },
+      //   { img: "/img/artworks/2.png", star: 0 },
+      // ],
+
+      imgsArr: [
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/3.png", href: "#" },
+        { src: "/img/artworks/5.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/2.png", href: "#" },
+        { src: "/img/artworks/4.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/3.png", href: "#" },
+        { src: "/img/artworks/5.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/2.png", href: "#" },
+        { src: "/img/artworks/4.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/3.png", href: "#" },
+        { src: "/img/artworks/5.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/2.png", href: "#" },
+        { src: "/img/artworks/4.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/3.png", href: "#" },
+        { src: "/img/artworks/5.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/2.png", href: "#" },
+        { src: "/img/artworks/4.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/3.png", href: "#" },
+        { src: "/img/artworks/5.png", href: "#" },
+        { src: "/img/artworks/1.png", href: "#" },
+        { src: "/img/artworks/2.png", href: "#" },
+        { src: "/img/artworks/4.png", href: "#" },
       ],
 
       tags: ["新闻摄影", "概念艺术"],
@@ -222,6 +261,9 @@ export default {
       highPrise: "",
     };
   },
+  components: {
+    vueWaterfallEasy,
+  },
   methods: {
     addTag(theme) {
       if (this.tags.find((e) => e === theme) === undefined) {
@@ -253,6 +295,24 @@ export default {
       if (this.lowPrise <= this.highPrise) {
         this.tags.push(`${this.lowPrise}-${this.highPrise}`);
       }
+    },
+    getData() {
+      // axios
+      //   .get("./static/mock/data.json?group=" + this.group) // 真实环境中，后端会根据参数group返回新的图片数组，这里我用一个惊呆json文件模拟
+      //   .then((res) => {
+      //     this.imgsArr = this.imgsArr.concat(res.data);
+      //     this.group++;
+      //   });
+
+      this.imgsArr.push([
+        { src: "./m/1.png", href: "#" },
+        { src: "./m/1.png", href: "#" },
+        { src: "./m/1.png", href: "#" },
+        { src: "./m/1.png", href: "#" },
+        { src: "./m/1.png", href: "#" },
+        { src: "./m/2.png", href: "#" },
+      ]);
+      this.group++;
     },
   },
 };
@@ -367,7 +427,7 @@ export default {
       transition: all 0.5s;
       padding: 0 10px 0px 10px;
     }
-    .artist:hover +.artist2 {
+    .artist:hover + .artist2 {
       display: block;
     }
     .q-rating {
@@ -493,5 +553,31 @@ export default {
   .all {
     margin: 0 10px;
   }
+}
+.artworks{
+  
+}
+</style>
+
+
+
+<style>
+.vue-waterfall-easy-container .vue-waterfall-easy-scroll {
+  overflow-x: unset !important;
+  overflow-y: unset !important;
+}
+.vue-waterfall-easy-container
+  .vue-waterfall-easy
+  a.img-wraper
+  > img {
+  border: 2px solid #efefe8 !important;
+  padding: 6px;
+  background-color: #152c2b;
+}
+.img-wraper{
+  width: 260px !important;
+}
+.vue-waterfall-easy-container .vue-waterfall-easy a.img-inner-box[data-v-ded6b974]{
+  box-shadow: none !important;
 }
 </style>

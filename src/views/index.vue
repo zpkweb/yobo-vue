@@ -52,7 +52,7 @@
         </div>
       </div>
       <q-carousel
-        height="480px"
+        height="510px"
         animated
         v-model="slide"
         infinite
@@ -84,7 +84,7 @@
           <q-img
             src="img/index/artist.png"
             class="advantage-img"
-            width="36px"
+            width="55px"
           ></q-img>
           <div class="item-title">精选艺术家</div>
           <div class="item-desc">来自五湖四海的艺术家</div>
@@ -93,7 +93,7 @@
           <q-img
             src="img/index/ship.png"
             class="advantage-img"
-            width="36px"
+            width="55px"
           ></q-img>
           <div class="item-title">全球免费邮送</div>
           <div class="item-desc">专业物流三至四周到货</div>
@@ -102,7 +102,7 @@
           <q-img
             src="img/index/freereturn.png"
             class="advantage-img"
-            width="36px"
+            width="55px"
           ></q-img>
           <div class="item-title">免费返品</div>
           <div class="item-desc">收到作品14天内免费返品</div>
@@ -111,7 +111,7 @@
           <q-img
             src="img/index/pay.png"
             class="advantage-img"
-            width="36px"
+            width="55px"
           ></q-img>
           <div class="item-title">安全支付方式</div>
           <div class="item-desc">信用卡或转账支付</div>
@@ -125,7 +125,7 @@
         <div class="row">
           <div class="col-3 relative-position text-center">
             <div class="line absolute"></div>
-            <q-img src="img/index/painting1.png" width="80%"></q-img>
+            <q-img src="img/index/painting1.png" width="230px"></q-img>
             <div class="desc bottom text-right">
               <div class="place">Naku</div>
               <div class="name">Margaret Ashman</div>
@@ -137,11 +137,11 @@
               <div class="place">Dessin Louvre : Les trois grâces</div>
               <div class="name">Harry Boudchicha</div>
             </div>
-            <q-img src="img/index/painting2.png" width="220px"></q-img>
+            <q-img src="img/index/painting2.png" width="230px"></q-img>
           </div>
           <div class="col-3 relative-position text-center">
             <div class="line absolute"></div>
-            <q-img src="img/index/painting3.png" width="220px"></q-img>
+            <q-img src="img/index/painting3.png" width="230px"></q-img>
             <div class="desc bottom text-right">
               <div class="place">Naku</div>
               <div class="name">Margaret Ashman</div>
@@ -153,7 +153,7 @@
               <div class="place">Dessin Louvre : Les trois grâces</div>
               <div class="name">Harry Boudchicha</div>
             </div>
-            <q-img src="img/index/painting4.png" width="220px"></q-img>
+            <q-img src="img/index/painting4.png" width="230px"></q-img>
           </div>
         </div>
       </div>
@@ -164,7 +164,7 @@
         <div class="col-3 relative-position">
           <div class="bg absolute"></div>
           <div class="new-item relative-position">
-            <q-img src="img/index/new1.png" width="220px"></q-img>
+            <q-img src="img/index/new1.png" width="255px"></q-img>
             <div class="new-desc text-left bg-white">
               <q-breadcrumbs separator="|" gutter="sm">
                 <q-breadcrumbs-el label="粉彩 • 帆布" class="text-dark" />
@@ -177,7 +177,7 @@
         <div class="col-3 relative-position">
           <div class="bg absolute"></div>
           <div class="new-item relative-position">
-            <q-img src="img/index/new2.png" width="220px"></q-img>
+            <q-img src="img/index/new2.png" width="255px"></q-img>
             <div class="new-desc text-left bg-white">
               <q-breadcrumbs separator="|" gutter="sm">
                 <q-breadcrumbs-el label="丙烯酸 • 帆布" class="text-dark" />
@@ -190,7 +190,7 @@
         <div class="col-3 relative-position">
           <div class="bg absolute"></div>
           <div class="new-item relative-position">
-            <q-img src="img/index/new3.png" width="220px"></q-img>
+            <q-img src="img/index/new3.png" width="255px"></q-img>
             <div class="new-desc text-left bg-white">
               <q-breadcrumbs separator="|" gutter="sm">
                 <q-breadcrumbs-el label="油画 • 帆布" class="text-dark" />
@@ -203,7 +203,7 @@
         <div class="col-3 relative-position">
           <div class="bg absolute"></div>
           <div class="new-item relative-position">
-            <q-img src="img/index/new4.png" width="220px"></q-img>
+            <q-img src="img/index/new4.png" width="255px"></q-img>
             <div class="new-desc text-left bg-white">
               <q-breadcrumbs separator="|" gutter="sm">
                 <q-breadcrumbs-el label="丙烯酸 • 帆布" class="text-dark ddd" />
@@ -217,8 +217,11 @@
     </div>
     <div class="sort-container">
       <div class="row sort">
-        <div class="col-7 left">
-          <div class="title">通过画作看世界</div>
+        <div class="col-grow left">
+          <div class="title relative-position">
+            <div>通过画作看世界</div>
+            <div class="num absolute">20万+</div>
+          </div>
           <div class="row">
             <div
               class="col-4 sort-item relative-position"
@@ -229,7 +232,7 @@
               <div class="line2 absolute"></div>
               <q-img
                 src="img/index/1.png"
-                width="176px"
+                width="210px"
                 class="relative-position"
               >
                 <div class="tab absolute-bottom text-center">
@@ -241,7 +244,7 @@
             </div>
           </div>
         </div>
-        <div class="col-5 right">
+        <div class="col right">
           <div class="title">按价格浏览</div>
           <div class="row text-center text-white">
             <div class="col-6">
@@ -365,7 +368,7 @@ export default {
   },
   methods: {
     Top() {
-      console.log(document.documentElement.scrollTop);
+      // console.log(document.documentElement.scrollTop);
       document.documentElement.scrollTop >= 600
         ? this.$refs.top.classList.remove("none")
         : this.$refs.top.classList.add("none");
@@ -396,31 +399,34 @@ export default {
   .content {
     z-index: 10;
     margin: 0 auto;
-    width: 1100px;
+    width: 1220px;
     .title {
       font-size: 48px;
       font-family: "Adobe Heiti Std";
-      text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.4);
+      text-shadow: 0px 3px 7px rgba(0, 0, 0, 0.8);
       margin-top: 120px;
       letter-spacing: 5px;
-      padding-right: 140px;
+      padding-right: 160px;
     }
     .menu {
       background-color: rgba(21, 44, 43, 0.502);
-      height: 480px;
-      padding: 28px;
+      height: 510px;
+      padding: 36px 20px;
+      width: 273px;
       .menu-title {
-        font-size: 20px;
+        font-size: 24px;
         padding: 14px 0;
+        font-weight: bolder;
       }
       .menu-title1 {
         padding-top: 0;
       }
       .menu-el {
-        line-height: 14px;
-        font-size: 15px;
+        line-height: 13px;
+        font-size: 16px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        padding-bottom: 21px;
+        padding-bottom: 40px;
+        font-weight: bolder !important;
       }
     }
     .slide {
@@ -445,43 +451,43 @@ export default {
 }
 
 .advantage {
-  padding: 60px 0;
-  width: 1100px;
+  padding: 65px 0;
+  width: 1220px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 
   .title {
-    font-size: 26px;
-    margin-bottom: 42px;
+    font-size: 24px;
+    margin-bottom: 60px;
     letter-spacing: 2px;
   }
   .advantage-img {
-    margin-bottom: 21px;
+    margin-bottom: 30px;
   }
   .item-title {
     font-size: 18px;
-    letter-spacing: 4px;
+    line-height: 17px;
   }
   .item-desc {
-    font-size: 12px;
-    letter-spacing: 2px;
+    font-size: 14px;
   }
 }
 .gallary-container {
   color: rgb(51, 51, 51);
   background-color: #ededed;
   .gallary {
-    padding: 60px 0;
-    width: 1100px;
+    padding: 65px 0;
+    width: 1220px;
     margin: 0 auto;
     .gallary-title {
-      font-size: 26px;
-      letter-spacing: 5px;
+      font-size: 24px;
+      letter-spacing: 2px;
       padding-bottom: 5px;
     }
     .gallary-desc {
-      font-size: 18px;
-      padding-bottom: 60px;
+      font-size: 12px;
+      font-family: "Heiti SC";
+      padding-bottom: 70px;
     }
     .line,
     .line-bottom {
@@ -498,62 +504,67 @@ export default {
       top: 246px;
     }
     .desc {
-      font-size: 12px;
       margin: 0 auto;
-      padding: 0 28px 28px 0;
+      padding: 0 40px 28px 0;
+      white-space: nowrap;
     }
 
     .bottom {
-      padding: 28px 28px 0 0;
+      padding: 28px 40px 15px 0;
+      white-space: nowrap;
     }
     .place {
       font-family: "FangSong";
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: #000;
-      font-size: 12px;
+      font-size: 14px;
     }
     .name {
+      font-size: 14px;
       font-family: "FangSong";
       color: #909090;
     }
   }
 }
 .new {
-  width: 1100px;
+  width: 1220px;
   margin: 0 auto;
   color: rgb(51, 51, 51);
 }
 .new {
-  padding: 60px 0;
+  padding: 65px 0;
   .new-title {
-    font-size: 26px;
+    font-size: 24px;
     margin-bottom: 60px;
   }
   .new-items {
     .new-item {
       border: 1px solid #00113d;
-      width: 220px;
+      width: 257px;
       margin: 0 auto;
       .new-desc {
-        width: 220px;
-        padding: 40px 0 20px 5px;
         font-size: 12px;
+        font-family: "Heiti SC";
+        width: 255px;
+        padding: 61px 0 20px 15px;
       }
     }
     .bg {
-      width: 220px;
+      width: 255px;
       background-color: #738080;
-      height: 305px;
-      left: 40px;
+      height: 362px;
+      left: 38px;
       top: 10px;
     }
     .name {
+      font-size: 16px;
       background-color: #152c2b;
       width: 154px;
-      height: 28px;
-      top: 230px;
-      padding-left: 14px;
-      line-height: 28px;
+      height: 35px;
+      top: 270px;
+      left: 10px;
+      padding-left: 30px;
+      line-height: 35px;
       color: #a7acab;
       font-weight: bolder;
     }
@@ -561,18 +572,31 @@ export default {
 }
 .sort-container {
   background-color: #ededed;
+  .left {
+    width: 707px;
+    padding-top: 12px;
+  }
+  .right {
+    padding-left: 10px;
+  }
   .sort {
     padding: 60px 0;
-    width: 1100px;
+    width: 1220px;
     margin: 0 auto;
 
     .title {
-      padding-bottom: 42px;
+      padding-bottom: 46px;
       font-size: 21px;
-    }
-    .left,
-    .right {
-      padding: 0 14px;
+      .num {
+        font-size: 48px;
+        font-family: "Hiragino Sans GB";
+        color: rgba(173, 175, 139, 0.2);
+        font-weight: bolder;
+        padding: 10px;
+        vertical-align: middle;
+        left: 141px;
+        top: -35px;
+      }
     }
     .sort-item {
       padding: 0 28px 28px 0;
@@ -599,36 +623,40 @@ export default {
         opacity: 0;
         transition: all 0.5s;
         z-index: 60;
-        padding-top: 50px;
+        padding-top: 70px;
+        font-size: 16px;
       }
 
       .line2 {
-        width: 82%;
-        height: 136px;
+        width: 210px;
+        height: 165px;
         background-color: #caccaa;
-        top: 7px;
-        left: 18px;
+        top: 10px;
+        left: 7px;
+        // z-index: -1;
       }
       .line1 {
-        width: 82%;
-        height: 126px;
-        top: 12px;
-        left: 26px;
+        width: 210px;
+        height: 148px;
+        top: 19px;
+        left: 14px;
         background-color: #d3d4c6;
       }
     }
     .prise {
       font-weight: 500;
-      margin: 0 7px 56px 0;
-      padding: 40px 0;
-      font-size: 14px;
+      margin: 0 10px 80px 0;
+      padding: 39px 0;
+      font-size: 12px;
+      font-weight: bold;
       background-image: linear-gradient(
         180deg,
         rgb(0, 0, 0) 0%,
         rgb(21, 44, 43) 100%
       );
       span {
-        font-size: 28px;
+        font-size: 26px;
+        font-weight: bold;
       }
     }
   }
@@ -637,7 +665,7 @@ export default {
   background-color: #232323;
 }
 .contact {
-  width: 1100px;
+  width: 1220px;
   margin: 0 auto;
   padding: 60px 0;
   .mail {
@@ -684,13 +712,13 @@ export default {
 }
 .carousel2::v-deep {
   .q-carousel__navigation-inner {
-    transform: scale(0.7);
+    transform: scale(0.6);
     color: #adaf8b;
   }
 }
 .hot-artists {
   padding: 60px 0;
-  width: 1100px;
+  width: 1220px;
   margin: 0 auto;
   .title {
     padding-bottom: 60px;
