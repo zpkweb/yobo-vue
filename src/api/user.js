@@ -24,3 +24,10 @@ export function login(email, phone, password) {
         }
     )
 }
+
+
+export function getUserInfo(userId) {
+    return axios.get(
+        `/api/user/self?userId=${userId}`
+    )
+}

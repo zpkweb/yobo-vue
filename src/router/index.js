@@ -54,6 +54,16 @@ const routes = [
     name: 'Pay',
     component: () => import(/* webpackChunkName: "pay" */ '../views/pay.vue')
   },
+  {
+    path: '/evaluate',
+    name: 'Evaluate',
+    component: () => import(/* webpackChunkName: "evaluate" */ '../views/evaluate.vue')
+  },
+  {
+    path: '/newaddress',
+    name: 'NewAddress',
+    component: () => import(/* webpackChunkName: "newAddress" */ '../views/newAddress.vue')
+  },
 ]
 
 const router = new VueRouter({

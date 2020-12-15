@@ -207,7 +207,12 @@
             class="input"
             v-model="email"
           />
-          <input type="text" placeholder="请输入密码" class="input" v-model="password"/>
+          <input
+            type="text"
+            placeholder="请输入密码"
+            class="input"
+            v-model="password"
+          />
           <div class="row">
             <div class="text-left col-6">
               <input type="checkbox" class="check" />
@@ -217,7 +222,9 @@
               忘记密码
             </div>
           </div>
-          <div class="text-white text-center login btn" @click="login">登陆</div>
+          <div class="text-white text-center login btn" @click="login">
+            登陆
+          </div>
           <div class="checkbox1">
             登陆即代表同意 <span class="xy btn">《永宝协议》</span>及
             <span class="ys btn">《永宝隐私政策》</span>
@@ -315,9 +322,24 @@
             class="input"
             v-model="firstName"
           />
-          <input type="text" placeholder="名字" class="input" v-model="artistName" />
-          <input type="text" placeholder="邮箱" class="input" v-model="artistMail" />
-          <input type="text" placeholder="电话" class="input" v-model="artistPhone" />
+          <input
+            type="text"
+            placeholder="名字"
+            class="input"
+            v-model="artistName"
+          />
+          <input
+            type="text"
+            placeholder="邮箱"
+            class="input"
+            v-model="artistMail"
+          />
+          <input
+            type="text"
+            placeholder="电话"
+            class="input"
+            v-model="artistPhone"
+          />
           <select
             class="select"
             id="application_country"
@@ -556,6 +578,7 @@
 
 <script>
 import * as ApiUser from "@/api/user.js";
+import * as utils from "@/api/utils.js";
 export default {
   components: {},
 
@@ -574,10 +597,10 @@ export default {
       email: "",
       phone: "",
       password: "",
-      firstName:"",
-      artistName:"",
-      artistMail:"",
-      artistPhone:""
+      firstName: "",
+      artistName: "",
+      artistMail: "",
+      artistPhone: "",
     };
   },
   methods: {
@@ -607,10 +630,13 @@ export default {
       );
       console.log(res);
     },
-    async login(){
-      let res= await ApiUser.login(this.email,this.phone,this.password)
-      console.log(res)  
-    }
+    async login() {
+      let res = await ApiUser.login(this.email, this.phone, this.password);
+      console.log(res);
+      utils.setToken(res.data.data.token);
+      utils.setUserId(res.data.data.userId);
+      utils.setGlobalUserInfo(res.data.data);
+    },
   },
 };
 </script>
@@ -626,7 +652,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.btn{
+.btn {
   cursor: pointer;
 }
 .app {
