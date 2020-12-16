@@ -27,7 +27,7 @@ let userId = utils.getUserId()
 if (token !== false && userId !== false) {
   (async () => {
     let res = await ApiUser.getUserInfo(userId);
-    utils.setUserInfo(res)
+    utils.setGlobalUserInfo(res.data.data)
     initVue();
   })()
 } else {
