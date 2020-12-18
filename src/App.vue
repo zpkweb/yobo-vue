@@ -1,5 +1,4 @@
 <template>
-  <!-- <q-layout class="app" view="lHh Lpr lFf"> -->
   <q-layout class="app">
     <div class="bg-white nav relative-position">
       <div class="header row text-black relative-position">
@@ -29,7 +28,7 @@
           <div class="artist-register btn" @click="icon3 = true">
             成为艺术家
           </div>
-          <q-breadcrumbs separator="|" class="separator">
+          <q-breadcrumbs separator="|" class="separator" v-if="!userInfo">
             <q-breadcrumbs-el
               label="登陆"
               class="login text-black btn"
@@ -41,7 +40,9 @@
               @click="icon2 = true"
             />
           </q-breadcrumbs>
-          <!-- <div class="username">葫芦娃</div> -->
+          <div class="username btn" v-if="userInfo" @click="goMine">
+            {{ userInfo.name }}
+          </div>
           <div class="search btn text-center" @click="icon4 = true">
             <q-img
               src="img/index/search.png"
@@ -332,7 +333,7 @@
             type="text"
             placeholder="邮箱"
             class="input"
-            v-model="artistMail"
+            v-model="artistEmail"
           />
           <input
             type="text"
@@ -344,6 +345,7 @@
             class="select"
             id="application_country"
             name="application[country]"
+            v-model="country"
           >
             <option value selected>国家</option>
             <option value="American">美国</option>
@@ -573,6 +575,21 @@
         </q-stepper>
       </q-card>
     </q-dialog>
+
+    <q-dialog v-model="icon6" transition-hide="fade" transition-show="fade">
+      <q-card class="card card1 success">
+        <q-card-section class="row items-center q-pb-none">
+          <div class="quotation">“</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+        <div class="text-center title">恭喜，注册已确认！</div>
+        <div class="text-center content">已给您发送一封确认邮件</div>
+        <div class="text-center content">
+          您已经可以探索我们艺术家的作品并保存您的所爱。
+        </div>
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
@@ -584,6 +601,7 @@ export default {
 
   data() {
     return {
+      userInfo: utils.getGlobalUserInfo(),
       step: 1,
       right: false,
       icon1: false,
@@ -591,6 +609,7 @@ export default {
       icon3: false,
       icon4: false,
       icon5: false,
+      icon6: false,
       msg: "",
       mode: "page1",
       name: "",
@@ -599,7 +618,7 @@ export default {
       password: "",
       firstName: "",
       artistName: "",
-      artistMail: "",
+      artistEmail: "",
       artistPhone: "",
     };
   },
@@ -621,6 +640,9 @@ export default {
       this.icon1 = false;
       this.icon5 = true;
     },
+    goMine() {
+      this.$router.push("/mine");
+    },
     async register() {
       let res = await ApiUser.register(
         this.name,
@@ -636,6 +658,8 @@ export default {
       utils.setToken(res.data.data.token);
       utils.setUserId(res.data.data.userId);
       utils.setGlobalUserInfo(res.data.data);
+      this.icon1=false;
+      this.icon6=true;
     },
   },
 };
@@ -1071,7 +1095,46 @@ export default {
     display: none;
   }
 }
+.card1 {
+  padding: 0;
+}
+.success {
+  width: 485px;
+  height: 374px;
+  background: url("/img/index/success.png") center center no-repeat;
+  .quotation {
+    font-size: 88px;
+    font-family: "Hei";
+    color: rgba(21, 44, 43, 0.102);
+    line-height: 1.2;
+    text-align: center;
+    transform: matrix(5.563888314405, 0, 0, 5.563888314405, 0, 0);
+    -moz-transform: matrix(5.563888314405, 0, 0, 5.563888314405, 0, 0);
+    -webkit-transform: matrix(5.563888314405, 0, 0, 5.563888314405, 0, 0);
+    -ms-transform: matrix(5.563888314405, 0, 0, 5.563888314405, 0, 0);
+    position: absolute;
+    left: -102px;
+    top: 153px;
+    z-index: 101;
+  }
+  .title {
+    font-size: 24px;
+    font-family: "STFangsong";
+    margin-bottom: 30px;
+    margin-top: 26px;
+    padding-left: 14px;
+  }
+  .content {
+    font-size: 16px;
+    font-family: "STFangsong";
+    letter-spacing: 0.5px;
+  }
+}
 </style>
+
+
+
+
 
 
 
