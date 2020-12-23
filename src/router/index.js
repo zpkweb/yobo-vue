@@ -34,11 +34,7 @@ const routes = [
     name: 'Wishlist',
     component: () => import(/* webpackChunkName: "wishlist" */ '../views/wishlist.vue')
   },
-  {
-    path: '/test',
-    name: 'Test',
-    component: () => import(/* webpackChunkName: "test" */ '../views/test.vue')
-  },
+
   {
     path: '/like',
     name: 'Like',

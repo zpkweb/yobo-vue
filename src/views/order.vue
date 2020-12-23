@@ -41,9 +41,28 @@
                 <div class="painter">Greeey Sarahgt</div>
                 <div class="desc">1920x1200cm -1988年</div>
               </div>
-              <div class="col-2">
-                <div class="time">剩余 14:29:44</div>
-                <div class="pay btn">去付款</div>
+              <div class="col-2 text-center">
+                <div class="time">
+                  <span class="text">剩余</span>
+                  <span class="text">14:29:44</span>
+                </div>
+                <div class="pay btn text-white">去付款</div>
+              </div>
+            </div>
+            <div class="item row">
+              <div class="col-3">
+                <div class="image image2"></div>
+              </div>
+              <div class="col-7">
+                <div class="painter">Greeey Sarahgt</div>
+                <div class="desc">1920x1200cm -1988年</div>
+              </div>
+              <div class="col-2 text-center">
+                <div class="time">
+                  <span class="text">剩余</span>
+                  <span class="text">14:29:44</span>
+                </div>
+                <div class="pay btn text-white">去付款</div>
               </div>
             </div>
           </div>
@@ -154,14 +173,43 @@ export default {
 .order {
   width: 1000px;
   margin: 0 auto;
-  .image {
-    background: url("/img/mine/order1.png") left center no-repeat;
-    width: 200px;
-    height: 200px;
+  .item {
+    border-bottom: 1px solid pink;
+    .image {
+      background: url("/img/mine/order1.png") center center no-repeat;
+      width: 200px;
+      height: 200px;
+    }
+    .image2 {
+      background: url("/img/mine/order2.png") center center no-repeat;
+    }
+    .painter.desc {
+      font-size: 14px;
+    }
+    .painter {
+      margin-top: 80px;
+    }
+    .time {
+      margin-top: 80px;
+      font-size: 14px;
+      color: rgb(239, 0, 88);
+      margin-bottom: 5px;
+      width: 150px;
+      .text {
+        padding: 0 5px;
+      }
+    }
+    .pay {
+      width: 150px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      background-color: rgb(21, 44, 43);
+      font-weight: 600;
+    }
   }
 }
 </style>
-
 
 
 
