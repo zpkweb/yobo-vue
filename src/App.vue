@@ -523,58 +523,16 @@
         <q-card-section class="row items-center q-pb-none section1">
           <div class="title">忘记密码</div>
           <q-space />
-          <q-btn icon="close" flat round dense v-close-popup />
+          <q-btn icon="close" flat round dense v-close-popup/>
         </q-card-section>
-        <q-stepper
-          v-model="step"
-          ref="stepper"
-          alternative-labels
-          color="primary"
-          animated
-          class="stepper"
-        >
-          <q-step :name="1" title="输入账户名" :done="step > 1">
-            <select name="" id="">
-              <option value="email" selected>已验证邮箱</option>
-              <option value="phone">手机号</option>
-            </select>
-            <input type="text" placeholder="请输入邮箱" v-model="email" />
-          </q-step>
-
-          <q-step :name="2" title="获取验证码" :done="step > 2">
-            <input
-              type="text"
-              placeholder="请输入验证码"
-              v-model="verifycode"
-            />
-          </q-step>
-
-          <q-step :name="3" title="重新设置新密码" :done="step > 3">
-            <input type="text" placeholder="请输入新密码" />
-          </q-step>
-          <q-step :name="4" title="设置成功" class="text-center">
-            <q-img src="img/index/success2.png" width="60px"></q-img>
-            <div>恭喜您！</div>
-            <div>密码设置成功</div>
-          </q-step>
-
-          <template v-slot:navigation>
-            <q-stepper-navigation class="text-center">
-              <q-btn
-                @click="$refs.stepper.next()"
-                :label="step === 4 ? '' : step === 3 ? '确认' : '下一步'"
-                class="continue text-white"
-              />
-              <!-- <q-btn
-              v-if="step > 1"
-              flat
-              @click="$refs.stepper.previous()"
-              label="Back"
-              class="q-ml-sm"
-            /> -->
-            </q-stepper-navigation>
-          </template>
-        </q-stepper>
+       <div class="setnewpassword">
+         <input type="text" v-model="email" placeholder="输入邮箱账号">
+         <div @click="getVerifyCode" class="button">获取验证码</div>
+         <input type="text" v-model="verifyCode" placeholder="输入验证码">
+         <div @click="sendVerifyCode" class="button">发送验证码</div>
+         <input type="text" v-model="newPassword" placeholder="输入新密码">
+         <div @click="setNewPassword" class="button">确认</div>
+       </div>
       </q-card>
     </q-dialog>
 
@@ -622,8 +580,9 @@ export default {
       artistName: "",
       artistEmail: "",
       artistPhone: "",
-      verifycode: "",
+      verifyCode: "",
       country: "",
+      newPassword:"",
     };
   },
   methods: {
@@ -648,28 +607,33 @@ export default {
       this.$router.push("/mine");
     },
     async register() {
-      try {
-        let res = await ApiUser.register(
-          this.name,
-          this.email,
-          this.phone,
-          this.password
-        );
+      let res = await ApiUser.register(
+        this.name,
+        this.email,
+        this.phone,
+        this.password
+      );
+      console.log(res)
+      if (res.data.code === 10201) {
+        alert("用户已存在,请直接登录");
+      } else {
         this.icon2 = false;
         this.icon6 = true;
-        console.log(res);
-      } catch (error) {
-        console.log(error);
       }
     },
     async login() {
-      let res = await ApiUser.login(this.email, this.phone, this.password);
-      console.log(res);
-      utils.setToken(res.data.data.token);
-      utils.setUserId(res.data.data.userId);
-      utils.setGlobalUserInfo(res.data.data);
-      this.userInfo = utils.getGlobalUserInfo();
-      this.icon1 = false;
+       let res = await ApiUser.login(this.email, this.phone, this.password);
+        if(res.data.code===10204){
+          alert("密码不正确，请重新输入密码")
+        }
+       
+        console.log(res);
+        utils.setToken(res.data.data.token);
+        utils.setUserId(res.data.data.userId);
+        utils.setGlobalUserInfo(res.data.data);
+        this.userInfo = utils.getGlobalUserInfo();
+        this.icon1 = false;
+    
     },
 
     async setNewPassword() {
@@ -680,6 +644,17 @@ export default {
         this.password
       );
     },
+
+    async getVerifyCode(){
+      let res = await ApiUser.getVerifyCode(this.email);
+      console.log(res)
+    },
+    async sendVerifyCode(){
+      let res
+    },
+    async setNewPassword(){
+
+    }
   },
 };
 </script>
@@ -1086,32 +1061,17 @@ export default {
     background-color: #152c2b;
   }
 }
-.get-password::v-deep {
-  .q-stepper__header {
-    border-bottom: none;
-    position: relative;
-    z-index: 100;
-  }
-  .q-stepper__tab {
-    color: #e4e4e4;
-  }
-  .q-stepper__tab--active,
-  .q-stepper__tab--done {
-    color: #adaf8b;
-  }
-  .material-icons {
-    display: none;
-  }
-  .q-stepper__dot {
-    width: 24px;
-    height: 24px;
-    min-width: 20px;
-    border-radius: 0;
-    transform: rotate(-45deg);
-  }
-  .q-stepper--horizontal .q-stepper__line:before,
-  .q-stepper--horizontal .q-stepper__line:after {
-    display: none;
+.setnewpassword{
+  padding: 60px;
+  .button{
+    margin: 20px 0;
+    width:160px ;
+    height: 40px;
+    background-color: #152c2b;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
   }
 }
 .card1 {
