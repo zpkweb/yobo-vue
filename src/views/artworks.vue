@@ -67,7 +67,8 @@
         <div class="text-left selected relative-position">
           <div>您已选择：</div>
           <div class="tag" v-for="tag in tags" :key="tag">
-            {{ tag }} <span @click="deleteTag(tag)" class="btn">×</span>
+            <span>{{ tag }}</span>
+            <span @click="deleteTag(tag)" class="btn">×</span>
           </div>
           <div class="clear absolute-right btn" @click="deleteAllTags">
             清空所有
@@ -87,54 +88,6 @@
         ></q-img>
         <div>暂无数据，请您重新搜索，我们会尽快完善！</div>
       </div> -->
-      <!-- <div class="wrap">
-        <div class="item relative-position" v-for="i in items" :key="i">
-          <div class="absolute-bottom row content">
-            <div class="artist col-grow">
-              <div class="header"></div>
-              <div class="name text-white">Frida Kahlo</div>
-            </div>
-            <div class="absolute artist2 bg-white">
-              <div class="row">
-                <div class="col-8 row">
-                  <div class="header2 col-grow"></div>
-                  <div class="col desc">
-                    <div>Frida Kahlo</div>
-                    <div>1.66W位关注者</div>
-                  </div>
-                </div>
-                <div class="btn col-4">
-                  <div class="follow btn text-white text-center">关注</div>
-                </div>
-              </div>
-              <div class="artworks row">
-                <div class="col-4">
-                  <div class="artwork"></div>
-                </div>
-                <div class="col-4">
-                  <div class="artwork"></div>
-                </div>
-                <div class="col-4">
-                  <div class="artwork"></div>
-                </div>
-              </div>
-              <div class="after"></div>
-            </div>
-            <div class="col text-right like">
-              <q-rating
-                v-model="i.star"
-                max="1"
-                size="2em"
-                icon="favorite_border"
-                icon-selected="favorite"
-                icon-half="favorite"
-                no-dimming
-              />
-            </div>
-          </div>
-          <q-img :src="i.img"></q-img>
-        </div>
-      </div> -->
       <div class="artworks">
         <vue-waterfall-easy
           :imgsArr="imgsArr"
@@ -142,25 +95,6 @@
           maxCols="4"
         ></vue-waterfall-easy>
       </div>
-
-      <!-- <div class="q-pa-lg flex flex-center">
-        <q-pagination
-          v-model="current"
-          color="teal-10"
-          :max="maxPage"
-          :max-pages="4"
-          :boundary-numbers="true"
-        >
-        </q-pagination>
-        <div class="next btn" @click="nextPage">下一页</div>
-        <div class="all">共{{ maxPage }}页</div>
-        <div>
-          到
-          <input type="text" class="input" v-model="newPage" />
-          页
-        </div>
-        <div class="button btn" @click="toNewPage">确定</div>
-      </div> -->
     </div>
   </q-layout>
 </template>
@@ -171,33 +105,6 @@ export default {
   name: "app",
   data() {
     return {
-      // items: [
-      //   { img: "/img/artworks/2.png", star: 0 },
-      //   { img: "/img/artworks/4.png", star: 1 },
-      //   { img: "/img/artworks/1.png", star: 0 },
-      //   { img: "/img/artworks/1.png", star: 1 },
-      //   { img: "/img/artworks/5.png", star: 1 },
-      //   { img: "/img/artworks/3.png", star: 0 },
-      //   { img: "/img/artworks/2.png", star: 1 },
-      //   { img: "/img/artworks/3.png", star: 1 },
-      //   { img: "/img/artworks/1.png", star: 1 },
-      //   { img: "/img/artworks/4.png", star: 1 },
-      //   { img: "/img/artworks/1.png", star: 1 },
-      //   { img: "/img/artworks/3.png", star: 1 },
-      //   { img: "/img/artworks/2.png", star: 1 },
-      //   { img: "/img/artworks/3.png", star: 1 },
-      //   { img: "/img/artworks/1.png", star: 0 },
-      //   { img: "/img/artworks/4.png", star: 1 },
-      //   { img: "/img/artworks/4.png", star: 1 },
-      //   { img: "/img/artworks/5.png", star: 0 },
-      //   { img: "/img/artworks/1.png", star: 0 },
-      //   { img: "/img/artworks/3.png", star: 0 },
-      //   { img: "/img/artworks/3.png", star: 0 },
-      //   { img: "/img/artworks/4.png", star: 0 },
-      //   { img: "/img/artworks/1.png", star: 0 },
-      //   { img: "/img/artworks/2.png", star: 0 },
-      // ],
-
       imgsArr: [
         { src: "/img/artworks/1.png", href: "#" },
         { src: "/img/artworks/3.png", href: "#" },
@@ -297,13 +204,6 @@ export default {
       }
     },
     getData() {
-      // axios
-      //   .get("./static/mock/data.json?group=" + this.group) // 真实环境中，后端会根据参数group返回新的图片数组，这里我用一个惊呆json文件模拟
-      //   .then((res) => {
-      //     this.imgsArr = this.imgsArr.concat(res.data);
-      //     this.group++;
-      //   });
-
       this.imgsArr.push([
         { src: "./m/1.png", href: "#" },
         { src: "./m/1.png", href: "#" },
@@ -376,7 +276,7 @@ export default {
     }
   }
   .sort-by {
-    padding: 10px 30px 20px 0;
+    padding: 10px 10px 20px 0;
     border-bottom: 1px solid rgba(#a1a190, 0.2);
     div {
       display: inline-block;
@@ -515,25 +415,9 @@ export default {
     }
     .clear {
       text-decoration: underline;
-      padding-right: 20px;
     }
   }
-  .q-pagination::v-deep {
-    .q-btn-item {
-      margin: 6px;
-      border-radius: 0;
-      box-shadow: none;
-      background-color: #e0e0e0;
-      font-size: 12px;
-      padding: 0 10px;
-    }
-    .bg-teal-10 {
-      background-color: #152c2b !important;
-    }
-    .q-btn__wrapper:before {
-      box-shadow: none;
-    }
-  }
+
   .next {
     border: 1px solid #333;
     padding: 4px 20px;
@@ -554,8 +438,7 @@ export default {
     margin: 0 10px;
   }
 }
-.artworks{
-  
+.artworks {
 }
 </style>
 
@@ -566,18 +449,17 @@ export default {
   overflow-x: unset !important;
   overflow-y: unset !important;
 }
-.vue-waterfall-easy-container
-  .vue-waterfall-easy
-  a.img-wraper
-  > img {
+.vue-waterfall-easy-container .vue-waterfall-easy a.img-wraper > img {
   border: 2px solid #efefe8 !important;
   padding: 6px;
   background-color: #152c2b;
 }
-.img-wraper{
+.img-wraper {
   width: 260px !important;
 }
-.vue-waterfall-easy-container .vue-waterfall-easy a.img-inner-box[data-v-ded6b974]{
+.vue-waterfall-easy-container
+  .vue-waterfall-easy
+  a.img-inner-box[data-v-ded6b974] {
   box-shadow: none !important;
 }
 </style>

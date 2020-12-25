@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as utils from "@/api/utils.js"
 
-// axios.defaults.baseURL = "http://192.168.0.67:7001"
 axios.defaults.baseURL = "http://81.70.62.235:7001"
 
 
@@ -46,7 +45,7 @@ export function getVerifyCode(userId, email) {
     return axios.post(
         "/api/user/password/retrieve/code/send",
         {
-            
+
             "email": email
         }
     )
@@ -70,6 +69,32 @@ export function setNewPassword(userId, email, phone, password) {
             "email": email,
             "phone": phone,
             "password": password
+        }
+    )
+}
+
+export function sellerRegister(firstname,lastname,email,phone,country,language,findUs,isFullTime,onlineSell,sold,channel,gallery,medium,galleryInfo,recommend,prize,website,profile) {
+    return axios.post(
+        "/api/user/seller/register",
+        {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            phone: phone,
+            country: country,
+            language: language,
+            findUs: findUs,
+            isFullTime: isFullTime,
+            onlineSell: onlineSell,
+            sold: sold,
+            channel: channel,
+            gallery: gallery,
+            medium: medium,
+            galleryInfo: galleryInfo,
+            recommend: recommend,
+            prize: prize,
+            website: website,
+            profile: profile,
         }
     )
 }

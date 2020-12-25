@@ -301,25 +301,13 @@
               </div>
               <div class="col-6">
                 <div class="row star">
-                  <div class="col-2">
-                    <q-img src="img/index/star.png" width="26px"></q-img>
+                  <div class="col-2" v-for="i of 5" :key="i">
+                    <q-img src="img/index/star.png" width="20px"></q-img>
                   </div>
-                  <div class="col-2">
-                    <q-img src="img/index/star.png" width="26px"></q-img>
-                  </div>
-                  <div class="col-2">
-                    <q-img src="img/index/star.png" width="26px"></q-img>
-                  </div>
-                  <div class="col-2">
-                    <q-img src="img/index/star.png" width="26px"></q-img>
-                  </div>
-                  <div class="col-2">
-                    <q-img src="img/index/star.png" width="26px"></q-img>
-                  </div>
-                  <div class="col-12 buyer">The staircase. Vaynor Park</div>
-                  <div class="col-12 content">
-                    今天我们收到了我们的艺术品。我们很满意！你们对于装框的建议非常实用，感谢你们的帮助！
-                  </div>
+                </div>
+                <div class="col-12 buyer">The staircase. Vaynor Park</div>
+                <div class="col-12 content">
+                  今天我们收到了我们的艺术品。我们很满意！你们对于装框的建议非常实用，感谢你们的帮助！
                 </div>
               </div>
             </q-carousel-slide>
@@ -338,7 +326,7 @@
         <div class="col-2" v-for="i in [1, 2, 3, 4, 5]" :key="i">
           <div class="image"></div>
           <div class="name">JEFF FERST</div>
-          <div>墨西哥-画家</div>
+          <div class="country">墨西哥-画家</div>
         </div>
       </div>
     </div>
@@ -693,15 +681,18 @@ export default {
     padding-bottom: 28px;
   }
   .star {
-    padding: 10px 0 0 0;
-    .buyer {
-      font-size: 16px;
-      font-weight: bolder;
-      padding: 20px 0;
-    }
-    .content {
-      font-size: 12px;
-    }
+    padding: 10px 100px 0 0;
+  }
+  .buyer {
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 20px 0;
+    letter-spacing: 1px;
+  }
+  .content {
+    font-size: 12px;
+    font-family: "Heiti SC";
+    font-weight: bolder;
   }
   .image {
     padding-left: 30px;
@@ -734,6 +725,10 @@ export default {
   .name {
     font-size: 18px;
   }
+  .country{
+    font-size: 12px;
+    font-family: "Heiti SC";
+  }
   .image {
     margin-bottom: 30px;
     background: url("/img/index/hotartist1.png") no-repeat;
@@ -761,5 +756,4 @@ export default {
   }
 }
 </style>
-
 

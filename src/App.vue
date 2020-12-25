@@ -199,20 +199,30 @@
             type="text"
             placeholder="您的全名"
             class="input"
-            @input="showMsg"
             v-model="name"
+            ref="name"
           />
+          <div class="msg" ref="msg2">
+            <q-img src="img/index/exclamation.png" width="14px"></q-img>
+            {{ msg2 }}
+          </div>
           <input
             type="text"
             placeholder="请输入邮箱"
             class="input"
             v-model="email"
+            ref="email"
           />
+          <div class="msg" ref="msg3">
+            <q-img src="img/index/exclamation.png" width="14px"></q-img>
+            {{ msg3 }}
+          </div>
           <input
             type="text"
             placeholder="请输入密码"
             class="input"
             v-model="password"
+            ref="password"
           />
           <div class="row">
             <div class="text-left col-6">
@@ -223,7 +233,11 @@
               忘记密码
             </div>
           </div>
-          <div class="text-white text-center login btn" @click="login">
+          <div
+            class="text-white text-center login btn"
+            @click="login"
+            ref="login"
+          >
             登陆
           </div>
           <div class="checkbox1">
@@ -265,18 +279,30 @@
               >登陆</span
             >
           </div>
+          <div class="msg" ref="registerMsg1">
+            <q-img src="img/index/exclamation.png" width="14px"></q-img>
+            {{ registerMsg1 }}
+          </div>
           <input
             type="text"
             placeholder="您的全名"
             class="input"
             v-model="name"
           />
+          <div class="msg" ref="registerMsg2">
+            <q-img src="img/index/exclamation.png" width="14px"></q-img>
+            {{ registerMsg2 }}
+          </div>
           <input
             type="text"
             placeholder="请输入邮箱"
             class="input"
             v-model="email"
           />
+          <div class="msg" ref="registerMsg3">
+            <q-img src="img/index/exclamation.png" width="14px"></q-img>
+            {{ registerMsg3 }}
+          </div>
           <input
             type="text"
             placeholder="请输入密码"
@@ -322,32 +348,27 @@
             type="text"
             placeholder="姓氏"
             class="input"
-            v-model="firstName"
+            v-model="firstname"
           />
           <input
             type="text"
             placeholder="名字"
             class="input"
-            v-model="artistName"
+            v-model="lastname"
           />
-          <input
-            type="text"
-            placeholder="邮箱"
-            class="input"
-            v-model="artistEmail"
-          />
-          <input
-            type="text"
-            placeholder="电话"
-            class="input"
-            v-model="artistPhone"
-          />
+          <input type="text" placeholder="邮箱" class="input" v-model="email" />
+          <input type="text" placeholder="电话" class="input" v-model="phone" />
           <select
             class="select"
             id="application_country"
             name="application[country]"
             v-model="country"
           >
+            <option
+              :value="country.value"
+              v-for="(country, index) in countries"
+              :key="index"
+            ></option>
             <option value selected>国家</option>
             <option value="American">美国</option>
             <option value="England">英国</option>
@@ -358,6 +379,7 @@
             class="select"
             id="application_language"
             name="application[language]"
+            v-model="language"
           >
             <option value selected>语言</option>
             <option value="ch">中文</option>
@@ -370,6 +392,7 @@
             class="select"
             id="application_foundOn"
             name="application[foundOn]"
+            v-model="findUs"
           >
             <option value selected>您是如何发现我们的</option>
             <option value="facebook">脸书</option>
@@ -402,6 +425,7 @@
             class="select"
             id="application_soleIncome"
             name="application[soleIncome]"
+            v-model="isFullTime"
           >
             <option value selected>您是一个专业的全职艺术家么？</option>
             <option value="1">是</option>
@@ -411,6 +435,7 @@
             class="select"
             id="application_soldOnline"
             name="application[soldOnline]"
+            v-model="onlineSell"
           >
             <option value selected>售出的作品中，网上售出的比例占多少？</option>
             <option value="none">还未售出，所以我才愿意参加永宝</option>
@@ -422,6 +447,7 @@
             class="select"
             id="application_soldArtworks"
             name="application[soldArtworks]"
+            v-model="sold"
           >
             <option value selected>您在过去一年里售出多少件自己的作品？</option>
             <option value="<10">少于十件</option>
@@ -434,6 +460,7 @@
             class="select"
             id="application_soldVia"
             name="application[soldVia]"
+            v-model="channel"
           >
             <option value selected>
               如果您在网上售出过作品，是通过什么渠道呢？
@@ -446,11 +473,13 @@
             type="text"
             class="input"
             placeholder="如有其他画廊已合作，是哪一家（方便我们更全面了解您）"
+            v-model="gallery"
           />
           <select
             class="select"
             id="application_primaryMedium"
             name="application[primaryMedium]"
+            v-model="medium"
           >
             <option value selected>主要媒介</option>
             <option value="painting">油画</option>
@@ -466,17 +495,25 @@
           <textarea
             placeholder="您是画廊代表人么？请告知您的画廊名称、城市、国家"
             class="textarea"
+            v-model="galleryInfo"
           ></textarea>
           <textarea
             placeholder="最值得一看的展览/画廊/机构名称、城市、国家"
             class="textarea"
+            v-model="recommend"
           ></textarea>
           <textarea
             type="text"
             placeholder="最引人注目的奖项/奖项名称、获得年份"
             class="textarea"
+            v-model="prize"
           ></textarea>
-          <input type="text" placeholder="连接至网站" class="input" />
+          <input
+            type="text"
+            placeholder="连接至网站"
+            class="input"
+            v-model="website"
+          />
           <div class="text-white text-center register">申请</div>
         </q-card-section>
       </q-card>
@@ -523,16 +560,16 @@
         <q-card-section class="row items-center q-pb-none section1">
           <div class="title">忘记密码</div>
           <q-space />
-          <q-btn icon="close" flat round dense v-close-popup/>
+          <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
-       <div class="setnewpassword">
-         <input type="text" v-model="email" placeholder="输入邮箱账号">
-         <div @click="getVerifyCode" class="button">获取验证码</div>
-         <input type="text" v-model="verifyCode" placeholder="输入验证码">
-         <div @click="sendVerifyCode" class="button">发送验证码</div>
-         <input type="text" v-model="newPassword" placeholder="输入新密码">
-         <div @click="setNewPassword" class="button">确认</div>
-       </div>
+        <div class="setnewpassword">
+          <input type="text" v-model="email" placeholder="输入邮箱账号" />
+          <div @click="getVerifyCode" class="button">获取验证码</div>
+          <input type="text" v-model="verifyCode" placeholder="输入验证码" />
+          <div @click="sendVerifyCode" class="button">发送验证码</div>
+          <input type="text" v-model="newPassword" placeholder="输入新密码" />
+          <div @click="setNewPassword" class="button">确认</div>
+        </div>
       </q-card>
     </q-dialog>
 
@@ -556,6 +593,7 @@
 <script>
 import * as ApiUser from "@/api/user.js";
 import * as utils from "@/api/utils.js";
+import * as loclist from "../public/loclist.json";
 export default {
   components: {},
 
@@ -571,25 +609,44 @@ export default {
       icon5: false,
       icon6: false,
       msg: "",
+      msg2: "",
+      msg3: "",
       mode: "page1",
       name: "",
       email: "",
       phone: "",
       password: "",
-      firstName: "",
-      artistName: "",
-      artistEmail: "",
-      artistPhone: "",
-      verifyCode: "",
+      firstname: "",
+      lastname: "",
+      email: "",
       country: "",
-      newPassword:"",
+      language: "",
+      findUs: "",
+      isFullTime: "",
+      onlineSell: "",
+      sold: "",
+      channel: "",
+      gallery: "",
+      medium: "",
+      galleryInfo: "",
+      recommend: "",
+      prize: "",
+      website: "",
+      profile: "",
+      verifyCode: "",
+      newPassword: "",
+      countries: "",
+      loclist: "",
+      registerMsg1:"",
+      registerMsg2:"",
+      registerMsg3:"",
     };
   },
+  mounted() {
+    this.loclist = loclist.Location.CountryRegion;
+    console.log(this.loclist);
+  },
   methods: {
-    showMsg() {
-      // this.msg = "请输入正确用户名";
-      // this.$refs.msg.classList.add("block");
-    },
     goIndex() {
       this.$router.push("/");
     },
@@ -607,33 +664,60 @@ export default {
       this.$router.push("/mine");
     },
     async register() {
-      let res = await ApiUser.register(
-        this.name,
-        this.email,
-        this.phone,
-        this.password
-      );
-      console.log(res)
-      if (res.data.code === 10201) {
-        alert("用户已存在,请直接登录");
-      } else {
-        this.icon2 = false;
-        this.icon6 = true;
+      if (this.name === "") {
+        this.registerMsg1 = "用户名不能为空";
+        this.$refs.registerMsg1.classList.add("block");
+      }
+      if (this.email === "") {
+        this.registerMsg2 = "邮箱不能为空";
+        this.$refs.registerMsg2.classList.add("block");
+      }
+      if (this.password === "") {
+        this.registerMsg3 = "密码不能为空";
+        this.$refs.registerMsg3.classList.add("block");
+      }
+
+      if (this.name !== "" && this.email !== "" && this.password !== "") {
+        let res = await ApiUser.register(
+          this.name,
+          this.email,
+          this.phone,
+          this.password
+        );
+        console.log(res);
+        if (res.data.code === 10201) {
+          alert("用户已存在,请直接登录");
+        } else {
+          this.icon2 = false;
+          this.icon6 = true;
+        }
       }
     },
     async login() {
-       let res = await ApiUser.login(this.email, this.phone, this.password);
-        if(res.data.code===10204){
-          alert("密码不正确，请重新输入密码")
+      if (this.name === "") {
+        this.registerMsg1 = "用户名不能为空";
+        this.$refs.registerMsg1.classList.add("block");
+      }
+      if (this.email === "") {
+        this.registerMsg2 = "邮箱不能为空";
+        this.$refs.registerMsg2.classList.add("block");
+      }
+      if (this.password === "") {
+        this.registerMsg3 = "密码不能为空";
+        this.$refs.registerMsg3.classList.add("block");
+      }
+      if (this.name !== "" && this.email !== "" && this.password !== "") {
+        let res = await ApiUser.login(this.email, this.phone, this.password);
+        if (res.data.code === 10204) {
+          alert("密码不正确，请重新输入密码");
         }
-       
         console.log(res);
         utils.setToken(res.data.data.token);
         utils.setUserId(res.data.data.userId);
         utils.setGlobalUserInfo(res.data.data);
         this.userInfo = utils.getGlobalUserInfo();
         this.icon1 = false;
-    
+      }
     },
 
     async setNewPassword() {
@@ -645,16 +729,36 @@ export default {
       );
     },
 
-    async getVerifyCode(){
+    async getVerifyCode() {
       let res = await ApiUser.getVerifyCode(this.email);
-      console.log(res)
+      console.log(res);
     },
-    async sendVerifyCode(){
-      let res
+    async sendVerifyCode() {
+      let res;
     },
-    async setNewPassword(){
-
-    }
+    async setNewPassword() {},
+    async sellerRegister() {
+      let res = await ApiUser.sellerRegister(
+        this.firstname,
+        this.lastname,
+        this.email,
+        this.phone,
+        this.country,
+        this.language,
+        this.findUs,
+        this.isFullTime,
+        this.onlineSell,
+        this.sold,
+        this.channel,
+        this.gallery,
+        this.medium,
+        this.galleryInfo,
+        this.recommend,
+        this.prize,
+        this.website,
+        this.profile
+      );
+    },
   },
 };
 </script>
@@ -818,18 +922,31 @@ export default {
     width: 340px;
     margin: 20px auto;
     outline: 0;
-    // border: 1px solid rgb(21, 44, 43);
+
     border: 1px solid rgb(226, 226, 226);
+    &:focus {
+      border: 1px solid rgb(21, 44, 43);
+    }
   }
+
   .textarea {
     resize: none;
     height: 120px;
   }
   .login,
   .register {
-    background-color: #152c2b;
-    padding: 10px 20px;
+    background-color: #526463;
+    padding: 6px 20px;
     margin: 20px 0;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: "STFangsong";
+  }
+  .border-active {
+    border: 1px solid rgb(21, 44, 43) !important;
+  }
+  .bg-active {
+    background-color: #152c2b !important;
   }
   .select {
     display: block;
@@ -1061,11 +1178,11 @@ export default {
     background-color: #152c2b;
   }
 }
-.setnewpassword{
+.setnewpassword {
   padding: 60px;
-  .button{
+  .button {
     margin: 20px 0;
-    width:160px ;
+    width: 160px;
     height: 40px;
     background-color: #152c2b;
     color: #fff;

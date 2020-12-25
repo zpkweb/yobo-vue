@@ -1,7 +1,7 @@
 <template>
   <q-layout>
     <div class="banner relative-position">
-      <q-img src="img/artworks/banner.png" height="360px"></q-img>
+      <q-img src="img/artist.png" height="360px"></q-img>
       <div class="absolute-full text-center text">
         <div class="title">画家</div>
         <div class="number">7,442件符合您搜索条件的画家</div>
@@ -10,7 +10,7 @@
     <div class="container">
       <div class="options">
         <div class="option">
-          <div class="text-dark">标签</div>
+          <div class="title">标签</div>
           <div class="btn">不限</div>
           <div class="btn">画家</div>
           <div class="btn">雕刻家</div>
@@ -48,10 +48,10 @@
         <div class="btn">最热</div>
         <div class="btn">最新上传</div>
       </div>
-      <div class="artists">
-        <div class="artist" v-for="i of 12" :key="i">
+      <div class="artists row">
+        <div class="artist col-3" v-for="i of 12" :key="i">
           <div class="image">
-            <q-img src="img/artists/artist.png"></q-img>
+            <q-img src="img/artists/artist.png" width="194px"></q-img>
           </div>
           <div class="text-left">Alicja Dobrucka</div>
           <div class="text-left">英国 摄影师</div>
@@ -75,10 +75,10 @@
         >
         </q-pagination>
         <div class="next btn" @click="nextPage">下一页</div>
-        <div class="all">共{{maxPage}}页</div>
+        <div class="all">共{{ maxPage }}页</div>
         <div>
           到
-          <input type="text" class="input" v-model="newPage"/>
+          <input type="text" class="input" v-model="newPage" />
           页
         </div>
         <div class="btn button" @click="toNewPage">确定</div>
@@ -120,8 +120,8 @@ export default {
       ],
       text: "展开选项",
       current: 1,
-      newPage:"",
-      maxPage:10
+      newPage: "",
+      maxPage: 10,
     };
   },
   methods: {
@@ -153,13 +153,15 @@ export default {
   .text {
     padding-top: 80px;
     .title {
-      font-size: 38px;
+      font-size: 46px;
       letter-spacing: 8px;
       padding-bottom: 10px;
+      font-weight: bolder;
     }
     .number {
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: 5px;
+      font-weight: bolder;
     }
   }
 }
@@ -179,13 +181,16 @@ export default {
         display: inline-block;
         margin: 15px;
         &:hover {
-          color: green;
+          color: rgb(21, 44, 43);
         }
+      }
+      .title {
+        color: rgb(21, 44, 43);
       }
     }
   }
   .sort-by {
-    padding: 10px 30px 20px 0;
+    padding: 10px 30px 8px 0;
     border-bottom: 1px solid rgba(#a1a190, 0.2);
     div {
       display: inline-block;
@@ -193,18 +198,15 @@ export default {
     }
   }
   .artists {
-    margin: 60px auto;
-    width: 1100px;
-    column-count: 4;
-    column-gap: 60px;
     font-size: 16px;
-    .artist {
-      margin-bottom: 60px;
-    }
+    color: rgb(21, 44, 43);
+    line-height: 1.2;
+    font-weight: bolder;
+    letter-spacing: 2px;
     .image {
-      margin-bottom: 10px;
-      break-inside: avoid;
-      padding: 8px;
+      margin: 30px 0 10px 0;
+      width: 206px;
+      padding: 6px;
       background-color: #152c2b;
     }
   }
@@ -247,8 +249,12 @@ export default {
       border-radius: 0;
       box-shadow: none;
       background-color: #e0e0e0;
-      font-size: 12px;
+      font-size: 14px;
       padding: 0 10px;
+      font-weight: bolder;
+    }
+    .text-teal-10 {
+      color: rgb(21, 44, 43) !important;
     }
     .bg-teal-10 {
       background-color: #152c2b !important;
@@ -261,6 +267,7 @@ export default {
     border: 1px solid #333;
     padding: 4px 20px;
     margin: 0 6px;
+    font-size: 14px;
   }
   .input {
     width: 80px;
@@ -272,10 +279,12 @@ export default {
     background-color: #e0e0e0;
     padding: 5px 25px;
     margin: 10px;
+    color: rgb(21, 44, 43);
+    font-size: 14px;
+    font-weight: bolder;
   }
   .all {
     margin: 0 10px;
   }
 }
 </style>
-

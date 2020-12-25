@@ -174,7 +174,7 @@ export default {
   width: 1000px;
   margin: 0 auto;
   .item {
-    border-bottom: 1px solid pink;
+    border-bottom: 1px solid rgba(21, 44, 43, 0.1);
     .image {
       background: url("/img/mine/order1.png") center center no-repeat;
       width: 200px;
